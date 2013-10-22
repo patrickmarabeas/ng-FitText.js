@@ -10,28 +10,26 @@ module.directive('fittext', [ '$window', function( $window ) {
 			$scope.maxFontSize = $attrs.max || Number.POSITIVE_INFINITY;
 
 			var resizer = function() {
-				$scope.fontSize = Math.max(
-					Math.min(
-						$element.width() / ( $scope.compressor*10 ),
-						parseFloat( $scope.maxFontSize )
-					),
-					parseFloat( $scope.minFontSize )
-				);
+				$scope.$apply( function() {
+					$scope.fontSize = Math.max(
+						Math.min(
+							$element.width() / ( $scope.compressor * 10 ),
+							parseFloat( $scope.maxFontSize )
+						),
+						parseFloat( $scope.minFontSize )
+					);
+				});
 			};
 
 			var readyStateCheckInterval = setInterval( function() {
 				if ( document.readyState === "complete" ) {
 					clearInterval( readyStateCheckInterval );
-					$scope.$apply( function() {
-						resizer();
-					});
+					resizer();
 				}
 			}, 10);
 
 			angular.element( $window ).bind( 'resize', function() {
-				$scope.$apply( function() {
-					resizer();
-				});
+				resizer();
 			});
 
 		}
