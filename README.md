@@ -2,7 +2,7 @@
 
 ## AngularJS directive for inflating web type
 
-This is a rework of the original FitText which can be found here, and functions in the exact same manner: https://github.com/davatron5000/FitText.js.
+This is a rework of the original FitText which can be found here: https://github.com/davatron5000/FitText.js.
 
 	<h1 data-fittext data-ng-style="{'font-size':fontSize}">My Title</h1>
 
