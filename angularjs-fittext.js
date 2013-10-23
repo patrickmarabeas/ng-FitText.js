@@ -1,4 +1,4 @@
-var module = angular.module('fittext', []);
+var module = angular.module('fitText', []);
 
 module.directive('fittext', [ '$window', function( $window ) {
 	return {
@@ -13,11 +13,11 @@ module.directive('fittext', [ '$window', function( $window ) {
 				$scope.$apply( function() {
 					$scope.fontSize = Math.max(
 						Math.min(
-							$element.width() / ( $scope.compressor * 10 ),
+							$element[0].offsetWidth / ( $scope.compressor * 10 ),
 							parseFloat( $scope.maxFontSize )
 						),
 						parseFloat( $scope.minFontSize )
-					);
+					) + 'px';
 				});
 			};
 
