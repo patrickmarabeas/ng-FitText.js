@@ -1,6 +1,6 @@
 var module = angular.module('fitText', []);
 
-module.directive('fittext', [ '$window', function( $window ) {
+module.directive('fittext', [ '$window', '$document', function( $window, $document ) {
 	return {
 		restrict: 'A',
 		scope: true,
@@ -21,12 +21,9 @@ module.directive('fittext', [ '$window', function( $window ) {
 				});
 			};
 
-			var readyStateCheckInterval = setInterval( function() {
-				if ( document.readyState === "complete" ) {
-					clearInterval( readyStateCheckInterval );
-					resizer();
-				}
-			}, 10);
+			angular.element( $document ).ready( function () {
+				resizer();
+			});
 
 			angular.element( $window ).bind( 'resize', function() {
 				resizer();
