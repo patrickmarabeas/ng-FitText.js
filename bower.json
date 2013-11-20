@@ -1,0 +1,11 @@
+{
+	"name": "ng-FitText",
+	"version": "1.0.0",
+	"main": [
+		"ng-FitText.js"
+	],
+	"ignore": [
+		"**/.*",
+		"styles"
+	]
+}
