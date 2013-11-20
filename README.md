@@ -1,6 +1,6 @@
 # ng-FitText
 
-## ng-FitText makes font-sizes flexible. Use this AngularJS directive in your fluid or responsive layout to achieve scalable headlines that fill the width of a parent element.
+### ng-FitText makes font-sizes flexible. Use this AngularJS directive in your fluid or responsive layout to achieve scalable headlines that fill the width of a parent element.
 
 This is a rework of the original jQuery plugin which can be found here: https://github.com/davatron5000/FitText.js.
 
