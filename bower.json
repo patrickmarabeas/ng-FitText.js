@@ -8,7 +8,7 @@
 		"angular",
 		"javascript",
 		"typography"
-	]
+	],
 	"ignore": [
 		"**/.*",
 		"styles"
