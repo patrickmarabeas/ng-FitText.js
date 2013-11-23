@@ -16,6 +16,12 @@ module.directive( 'fittext', [ function() {
 	return {
 		restrict: 'A',
 		scope: true,
+//		transclude: true,
+//		replace: true,
+//		template: function( element, attrs ) {
+//			var tag = element[0].nodeName;
+//			return "<"+tag+" data-ng-transclude data-ng-style='{fontSize:fontSize}'></"+tag+">";
+//		},
 		link: function( scope, element, attrs ) {
 			scope.compressor = attrs.fittext || 1;
 			scope.minFontSize = attrs.fittextMin || Number.NEGATIVE_INFINITY;
@@ -31,7 +37,10 @@ module.directive( 'fittext', [ function() {
 						parseFloat( scope.minFontSize )
 					) + 'px';
 
-					// data-ng-style="{'font-size':fontSize}" can also be used on the element instead of the following:
+//					The following line can be replaced with the above block of commented code for a more angular approach if
+//					the element won't have multiple directives calling transclusion or templates on it, or the DOM isn't
+//					being manipulated. Since I can't assume what this directive will be used in combination with - this
+//					is the sure fire method:
 					element[0].style.fontSize = scope.fontSize;
 				});
 			};
