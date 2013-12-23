@@ -28,7 +28,6 @@ module.directive( 'fittext', [ function() {
 			scope.maxFontSize = attrs.fittextMax || Number.POSITIVE_INFINITY;
 
 			var resizer = function() {
-				scope.$apply( function() {
 					scope.fontSize = Math.max(
 						Math.min(
 							element[0].offsetWidth / ( scope.compressor * 10 ),
@@ -42,7 +41,6 @@ module.directive( 'fittext', [ function() {
 //					being manipulated. Since I can't assume what this directive will be used in combination with - this
 //					is the sure fire method:
 					element[0].style.fontSize = scope.fontSize;
-				});
 			};
 
 			angular.element( document ).ready( function() {
@@ -50,7 +48,7 @@ module.directive( 'fittext', [ function() {
 			});
 
 			angular.element( window ).bind( 'resize', function() {
-				resizer();
+				scope.$apply(resizer);
 			});
 
 		}
