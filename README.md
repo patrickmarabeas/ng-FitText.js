@@ -4,6 +4,8 @@
 
 This is a rework of the original jQuery plugin which can be found here: https://github.com/davatron5000/FitText.js.
 
+Grab it with Bower: `bower install ng-FitText.js`
+
 Include it in your AngularJS application
 
 	var myApp = angular.module( 'myApp', [ 'ngFitText' ] );
