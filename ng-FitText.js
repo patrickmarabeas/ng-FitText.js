@@ -1,4 +1,4 @@
-/* ng-FitText.js v1.0.0
+/* ng-FitText.js v1.0.1
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -28,19 +28,19 @@ module.directive( 'fittext', [ function() {
 			scope.maxFontSize = attrs.fittextMax || Number.POSITIVE_INFINITY;
 
 			var resizer = function() {
-					scope.fontSize = Math.max(
-						Math.min(
-							element[0].offsetWidth / ( scope.compressor * 10 ),
-							parseFloat( scope.maxFontSize )
-						),
-						parseFloat( scope.minFontSize )
-					) + 'px';
+				scope.fontSize = Math.max(
+					Math.min(
+						element[0].offsetWidth / ( scope.compressor * 10 ),
+						parseFloat( scope.maxFontSize )
+					),
+					parseFloat( scope.minFontSize )
+				) + 'px';
 
-//					The following line can be replaced with the above block of commented code for a more angular approach if
-//					the element won't have multiple directives calling transclusion or templates on it, or the DOM isn't
-//					being manipulated. Since I can't assume what this directive will be used in combination with - this
-//					is the sure fire method:
-					element[0].style.fontSize = scope.fontSize;
+//				The following line can be replaced with the above block of commented code for a more angular approach if
+//				the element won't have multiple directives calling transclusion or templates on it, or the DOM isn't
+//				being manipulated. Since I can't assume what this directive will be used in combination with - this
+//				is the sure fire method:
+				element[0].style.fontSize = scope.fontSize;
 			};
 
 			angular.element( document ).ready( function() {
