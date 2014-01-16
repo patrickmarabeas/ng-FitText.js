@@ -10,9 +10,8 @@
  * Date: 18/11/2013
  */
 
-var module = angular.module( 'ngFitText', [] );
-
-module.directive( 'fittext', [ function() {
+angular.module( 'ngFitText', [] )
+.directive( 'fittext', [ function() {
 	return {
 		restrict: 'A',
 		scope: true,
