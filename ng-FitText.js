@@ -1,4 +1,4 @@
-/* ng-FitText.js v1.0.1
+/* ng-FitText.js v1.0.2
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
