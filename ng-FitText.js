@@ -1,4 +1,4 @@
-/* ng-FitText.js v1.0.2
+/* ng-FitText.js v1.0.3
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -9,6 +9,8 @@
  *
  * Date: 18/11/2013
  */
+
+'use strict';
 
 angular.module( 'ngFitText', [] )
 .directive( 'fittext', [ function() {
@@ -40,16 +42,15 @@ angular.module( 'ngFitText', [] )
 //				being manipulated. Since I can't assume what this directive will be used in combination with - this
 //				is the sure fire method:
 				element[0].style.fontSize = scope.fontSize;
-			};
+			}; resizer(); //required for tests to pass without Chrome test window being minimised (resource starved - i.e. document.ready completes)
 
 			angular.element( document ).ready( function() {
 				resizer();
 			});
 
 			angular.element( window ).bind( 'resize', function() {
-				scope.$apply(resizer);
+				scope.$apply( resizer );
 			});
-
 		}
 	}
 }]);
