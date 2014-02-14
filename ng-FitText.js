@@ -1,13 +1,13 @@
-/* ng-FitText.js v1.0.3
+/* ng-FitText.js v1.0.4
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
  *
- * Copyright 2013, Patrick Marabeas http://pulse-dev.com
+ * Copyright 2013, Patrick Marabeas http://marabeas.io
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 18/11/2013
+ * Date: 14/02/2014
  */
 
 'use strict';
@@ -17,6 +17,7 @@ angular.module( 'ngFitText', [] )
 	return {
 		restrict: 'A',
 		scope: true,
+//		If the element is safe to transclude / template the following block can be used:
 //		transclude: true,
 //		replace: true,
 //		template: function( element, attrs ) {
