@@ -1,4 +1,4 @@
-/* ng-FitText.js v2.0.0
+/* ng-FitText.js v2.1.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -39,13 +39,15 @@ angular.module( 'ngFitText', [] )
 					) + 'px';
 
 					if( !scope.$$phase ) scope.$digest();
-
 				})();
 
-				angular.element( window ).bind( 'resize', function() {
+				angular.element( window ).bind( 'resize', debounce( function() {
 					scope.elementWidth = element[0].offsetWidth;
 					scope.resizer();
-				});
-			}
+				}, 250 ));
+
+                //Underscore's debounce function
+                function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
+            }
 		}
 	}]);
