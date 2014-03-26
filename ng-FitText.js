@@ -1,7 +1,8 @@
-/* ng-FitText.js v2.1.0
+/* ng-FitText.js v2.2.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
+ * Includes use of Underscore's debounce function
  *
  * Copyright 2014, Patrick Marabeas http://marabeas.io
  * Released under the MIT license
@@ -13,7 +14,11 @@
 'use strict';
 
 angular.module( 'ngFitText', [] )
-	.directive( 'fittext', [ function() {
+    .constant( 'config', {
+        'debounce': true,
+        'delay': 250
+    })
+	.directive( 'fittext', [ 'config', function( config ) {
 		return {
 			restrict: 'A',
 			scope: true,
@@ -30,6 +35,7 @@ angular.module( 'ngFitText', [] )
 				scope.elementWidth = element[0].offsetWidth;
 
 				( scope.resizer = function() {
+                    scope.elementWidth = element[0].offsetWidth;
 					scope.fontSize = Math.max(
 						Math.min(
 							scope.elementWidth / ( scope.compressor * 10 ),
@@ -41,12 +47,10 @@ angular.module( 'ngFitText', [] )
 					if( !scope.$$phase ) scope.$digest();
 				})();
 
-				angular.element( window ).bind( 'resize', debounce( function() {
-					scope.elementWidth = element[0].offsetWidth;
-					scope.resizer();
-				}, 250 ));
+                config.debounce == true
+                    ? angular.element( window ).bind( 'resize', debounce( function() { scope.resizer() }, config.delay ))
+                    : angular.element( window ).bind( 'resize', function() { scope.resizer() });
 
-                //Underscore's debounce function
                 function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
             }
 		}
