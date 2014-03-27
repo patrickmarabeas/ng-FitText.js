@@ -1,4 +1,4 @@
-/* ng-FitText.js v2.2.0
+/* ng-FitText.js v2.2.1
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -14,10 +14,10 @@
 'use strict';
 
 angular.module( 'ngFitText', [] )
-    .constant( 'config', {
-        'debounce': true,
-        'delay': 250
-    })
+	.constant( 'config', {
+		'debounce': true,
+		'delay': 250
+	})
 	.directive( 'fittext', [ 'config', function( config ) {
 		return {
 			restrict: 'A',
@@ -35,7 +35,7 @@ angular.module( 'ngFitText', [] )
 				scope.elementWidth = element[0].offsetWidth;
 
 				( scope.resizer = function() {
-                    scope.elementWidth = element[0].offsetWidth;
+					scope.elementWidth = element[0].offsetWidth;
 					scope.fontSize = Math.max(
 						Math.min(
 							scope.elementWidth / ( scope.compressor * 10 ),
@@ -47,11 +47,11 @@ angular.module( 'ngFitText', [] )
 					if( !scope.$$phase ) scope.$digest();
 				})();
 
-                config.debounce == true
-                    ? angular.element( window ).bind( 'resize', debounce( function() { scope.resizer() }, config.delay ))
-                    : angular.element( window ).bind( 'resize', function() { scope.resizer() });
+				config.debounce == true
+					? angular.element( window ).bind( 'resize', debounce( scope.resizer, config.delay ))
+					: angular.element( window ).bind( 'resize', scope.resizer);
 
-                function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
-            }
+				function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
+			}
 		}
 	}]);
