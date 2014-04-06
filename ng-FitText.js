@@ -1,4 +1,4 @@
-/* ng-FitText.js v2.2.1
+/* ng-FitText.js v2.3.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -8,17 +8,18 @@
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 25/02/2014
+ * Date: 06/04/2014
  */
 
 'use strict';
 
 angular.module( 'ngFitText', [] )
-	.constant( 'config', {
-		'debounce': true,
+	.value( 'config', {
+		'debounce': false,
 		'delay': 250
 	})
-	.directive( 'fittext', [ 'config', function( config ) {
+
+	.directive( 'fittext', [ 'config', 'fitTextConfig', function( config, fitTextConfig ) {
 		return {
 			restrict: 'A',
 			scope: true,
@@ -29,6 +30,8 @@ angular.module( 'ngFitText', [] )
 				return "<"+tag+" data-ng-transclude data-ng-style='{fontSize:fontSize}'></"+tag+">";
 			},
 			link: function( scope, element, attrs ) {
+				angular.extend(config, fitTextConfig.config);
+
 				scope.compressor = attrs.fittext || 1;
 				scope.minFontSize = attrs.fittextMin || Number.NEGATIVE_INFINITY;
 				scope.maxFontSize = attrs.fittextMax || Number.POSITIVE_INFINITY;
@@ -54,4 +57,15 @@ angular.module( 'ngFitText', [] )
 				function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
 			}
 		}
-	}]);
+	}])
+
+	.provider( 'fitTextConfig', function() {
+		var self = this;
+		this.config = {};
+		this.$get = function() {
+			var extend = {};
+			extend.config = self.config;
+			return extend;
+		};
+		return this;
+	});
