@@ -4,6 +4,8 @@
 
 This is a rework of the original jQuery plugin which can be found here: https://github.com/davatron5000/FitText.js.
 
+### Install and Inclusion
+
 Grab it with Bower: `bower install ng-FitText.js`
 
 Include it in your AngularJS application
@@ -21,3 +23,19 @@ Specifying a value for data-fittext allows you to fine tune the text size. The d
 	<h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
 
 The element needs to either be a block element or an inline-block element with a width specified (% or px).
+
+### Debounce
+
+Debouce (limiting the rate at which FitText will be called on window resize) is available. You can pass initialization parameters to the ngFitText constructor to achieve this:
+
+	myApp.config( function( fitTextConfigProvider ) {
+		fitTextConfigProvider.config = {
+			debounce: true, //default is false
+			delay: 1000 //default is 250
+		};
+
+		// OR
+
+		fitTextConfigProvider.config.debounce = true;
+		fitTextConfigProvider.config.delay = 1000;
+	});
