@@ -14,13 +14,13 @@ Include it in your AngularJS application
 
 Apply it to your text
 
-  <h1 data-fittext>FitText</h1>
+    <h1 data-fittext>FitText</h1>
 
 There are also additional attributes which can be used.
 
 Specifying a value for data-fittext allows you to fine tune the text size. The default is 1. Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
 
-  <h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
+    <h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
 
 The element needs to either be a block element or an inline-block element with a width specified (% or px).
 
@@ -28,14 +28,14 @@ The element needs to either be a block element or an inline-block element with a
 
 Debouce (limiting the rate at which FitText will be called on window resize) is available. You can pass initialization parameters to the ngFitText constructor to achieve this:
 
-  myApp.config( function( fitTextConfigProvider ) {
-    fitTextConfigProvider.config = {
-      debounce: true, //default is false
-      delay: 1000 //default is 250
-    };
+    myApp.config( function( fitTextConfigProvider ) {
+        fitTextConfigProvider.config = {
+            debounce: true, //default is false
+            delay: 1000 //default is 250
+        };
 
-    // OR
+        // OR
 
-    fitTextConfigProvider.config.debounce = true;
-    fitTextConfigProvider.config.delay = 1000;
-  });
+        fitTextConfigProvider.config.debounce = true;
+        fitTextConfigProvider.config.delay = 1000;
+    });
