@@ -10,7 +10,7 @@ Grab it with Bower: `bower install ng-FitText.js`
 
 Include it in your AngularJS application
 
-  var myApp = angular.module( 'myApp', [ 'ngFitText' ] );
+    var myApp = angular.module( 'myApp', [ 'ngFitText' ] );
 
 Apply it to your text
 
