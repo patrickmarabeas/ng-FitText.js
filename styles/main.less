@@ -2,141 +2,150 @@
 @blue: #0E80A0;
 
 html, body {
-	margin: 0;
-	padding: 0;
+  margin: 0;
+  padding: 0;
 }
 
 body {
-	background-color: #f0efee;
-	padding-top: 50px;
+  background-color: #f0efee;
+  padding-top: 50px;
 
-	@media all and (max-width: 640px) {
-		padding-top: 0;
-	}
+  @media all and (max-width: 640px) {
+    padding-top: 0;
+  }
 }
 
 @font-face {
-	font-family: 'open_sansregular';
-	src: url('fonts/OpenSans-Regular-webfont.eot');
-	src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Regular-webfont.woff') format('woff'), url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'open_sansregular';
+  src: url('fonts/OpenSans-Regular-webfont.eot');
+  src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Regular-webfont.woff') format('woff'), url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 @font-face {
-	font-family: 'lobster';
-	src: url('fonts/Lobster_1.3-webfont.eot');
-	src: url('fonts/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Lobster_1.3-webfont.woff') format('woff'), url('fonts/Lobster_1.3-webfont.ttf') format('truetype'), url('fonts/Lobster_1.3-webfont.svg#open_sansregular') format('svg');
-	font-weight: normal;
-	font-style: normal;
+  font-family: 'lobster';
+  src: url('fonts/Lobster_1.3-webfont.eot');
+  src: url('fonts/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Lobster_1.3-webfont.woff') format('woff'), url('fonts/Lobster_1.3-webfont.ttf') format('truetype'), url('fonts/Lobster_1.3-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
 }
 
 #top {
-	width: 100%;
-	background-color: @black;
-	color: white;
-	position: fixed;
-	top: 0;
+  width: 100%;
+  background-color: @black;
+  color: white;
+  position: fixed;
+  top: 0;
 
-	a {
-		font-family: 'open_sansregular', verdana, sans-serif;
-		line-height: 50px;
-		margin: 0 10px;
-		color: #f0efee;
-	}
+  a {
+    font-family: 'open_sansregular', verdana, sans-serif;
+    line-height: 50px;
+    margin: 0 10px;
+    color: #f0efee;
+  }
 
-	@media all and (max-width: 640px) {
-		position: relative;
-	}
+  @media all and (max-width: 640px) {
+    position: relative;
+  }
 }
 
-
 .page {
-	color: @black;
-	max-width: 960px;
-	overflow: hidden;
-	margin: 0 auto;
-	padding-bottom: 100px;
+  color: @black;
+  max-width: 960px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding-bottom: 100px;
 
-	header {
-		text-align: center;
-		margin-top: 30px;
+  header {
+    text-align: center;
+    margin-top: 30px;
 
-		h1 {
-			margin: 0;
+    h1 {
+      margin: 0;
 
-			span {
-				display: block;
+      span {
+        display: block;
 
-				&.line0 {
-					color: @blue;
-					font-family: 'open_sansregular', verdana, sans-serif;
-					border-top: 1px solid @blue;
-					border-bottom: 1px solid @blue;
-					text-align: left;
-				}
+        &.line0 {
+          color: @blue;
+          font-family: 'open_sansregular', verdana, sans-serif;
+          border-top: 1px solid @blue;
+          border-bottom: 1px solid @blue;
+          text-align: left;
+        }
 
-				&.line1 {
-					line-height: 0.9;
-				}
+        &.line1 {
+          line-height: 0.9;
+        }
 
-				&.line2 {
-					font-family: 'lobster', verdana, sans-serif;
-					font-weight: normal;
-					margin: -.2em 0 0 0;
-					line-height: 0.9;
-				}
+        &.line2 {
+          font-family: 'lobster', verdana, sans-serif;
+          font-weight: normal;
+          margin: -.2em 0 0 0;
+          line-height: 0.9;
+        }
 
-				&.line3 {
-					color: @blue;
-					font-family: 'open_sansregular', verdana, sans-serif;
-					border-top: 1px solid @blue;
-					border-bottom: 1px solid @blue;
-					margin: .8em 0 .5em 0;
-					text-align: right;
+        &.line3 {
+          color: @blue;
+          font-family: 'open_sansregular', verdana, sans-serif;
+          border-top: 1px solid @blue;
+          border-bottom: 1px solid @blue;
+          margin: .8em 0 .5em 0;
+          text-align: right;
 
-				}
+        }
 
-			}
+      }
 
-			a.download {
-				font-family: 'open_sansregular', verdana, sans-serif;
-				background-color: @black;
-				color: #f0efee;
-				line-height: 1.7em;
-				display: block;
-				text-decoration: none;
+      a.download {
+        font-family: 'open_sansregular', verdana, sans-serif;
+        background-color: @black;
+        color: #f0efee;
+        line-height: 1.7em;
+        display: block;
+        text-decoration: none;
 
-				&:hover {
-					text-decoration: underline;
-				}
-			}
-		}
-	}
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
 
-	h2 {
-		font-family: 'open_sansregular', verdana, sans-serif;
-		text-align: left;
-		font-size: 30px;
-		font-weight: normal;
-	}
+  h2 {
+    font-family: 'open_sansregular', verdana, sans-serif;
+    text-align: left;
+    font-size: 30px;
+    font-weight: normal;
+  }
 
-	.content {
-		margin-top: 20px;
-	}
+  .content {
+    margin-top: 20px;
+  }
 
-	p:first-child {
-		margin-top: 0;
-	}
+  p:first-child {
+    margin-top: 0;
+  }
 
-	p {
-		font-size: 16px;
-		line-height: 1.8em;
-		font-family: Helvetica, Verdana, Arial, sans-serif;
-	}
+  p {
+    font-size: 16px;
+    line-height: 1.8em;
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+  }
 
-	code {
-		margin-left: 20px;
-		font-size: 16px;
-	}
+  code {
+    margin-left: 20px;
+    font-size: 16px;
+
+    span {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      display: block;
+
+      span {
+        margin-left: 20px;
+      }
+    }
+  }
 }
