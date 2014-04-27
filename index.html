@@ -56,7 +56,8 @@
 
     <p>Specifying a value for data-fittext allows you to fine tune the text size. The default is 1. Increasing this
       number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the
-      aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.</p>
+      aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits. This can
+      also be set globally (applying to all uses) via the fitTextConfigProvider as seen below.</p>
 
     <code>&lt;h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50"&gt;ngFitText&lt;/h1&gt;</code>
 
@@ -72,14 +73,18 @@
       <span>myApp.config( function( fitTextConfigProvider ) {
 
       <span>fitTextConfigProvider.config = {
-          <span>debounce: true, //default is false</span>
-          <span>delay: 1000 //default is 250</span>
+          <span>debounce: true,</span>
+          <span>delay: 1000,</span>
+          <span>min: 20, //minimum global font size</span>
+          <span>max: 100, //maximum global font size</span>
       };</span>
 
       <span>// OR</span>
 
       <span>fitTextConfigProvider.config.debounce = true;</span>
       <span>fitTextConfigProvider.config.delay = 1000;</span>
+      <span>fitTextConfigProvider.config.min = 20;</span>
+      <span>fitTextConfigProvider.config.max = 100;</span>
 
       });</span>
 

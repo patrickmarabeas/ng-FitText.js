@@ -16,7 +16,9 @@
 angular.module( 'ngFitText', [] )
   .value( 'config', {
     'debounce': false,
-    'delay': 250
+    'delay': 250,
+    'min': undefined,
+    'max': undefined
   })
 
   .directive( 'fittext', [ 'config', 'fitTextConfig', function( config, fitTextConfig ) {
@@ -33,8 +35,8 @@ angular.module( 'ngFitText', [] )
         angular.extend( config, fitTextConfig.config );
 
         scope.compressor = attrs.fittext || 1;
-        scope.minFontSize = attrs.fittextMin || Number.NEGATIVE_INFINITY;
-        scope.maxFontSize = attrs.fittextMax || Number.POSITIVE_INFINITY;
+        scope.minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
+        scope.maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
         scope.elementWidth = element[0].offsetWidth;
 
         ( scope.resizer = function() {
