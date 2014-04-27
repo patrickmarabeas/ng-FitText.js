@@ -1,4 +1,4 @@
-/* ng-FitText.js v2.3.1
+/* ng-FitText.js v2.4.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -8,7 +8,7 @@
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 06/04/2014
+ * Date: 28/04/2014
  */
 
 'use strict';
