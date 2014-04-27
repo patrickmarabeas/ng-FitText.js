@@ -47,12 +47,11 @@ angular.module( 'ngFitText', [] )
             parseFloat( scope.minFontSize )
           ) + 'px';
 
-          if( !scope.$$phase ) scope.$digest();
         })();
 
         config.debounce == true
-          ? angular.element( window ).bind( 'resize', debounce( scope.resizer, config.delay ))
-          : angular.element( window ).bind( 'resize', scope.resizer );
+          ? angular.element( window ).bind( 'resize', function() { scope.$apply( debounce( scope.resizer, config.delay ))})
+          : angular.element( window ).bind( 'resize', function() { scope.$apply( scope.resizer )});
 
         function debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
       }
