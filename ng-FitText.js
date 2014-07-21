@@ -21,7 +21,7 @@ angular.module( 'ngFitText', [] )
     'max': undefined
   })
 
-  .directive( 'fittext', [ 'config', 'fitTextConfig', function( config, fitTextConfig ) {
+  .directive( 'fittext', [ '$window', 'config', 'fitTextConfig', function( $window, config, fitTextConfig ) {
     return {
       restrict: 'A',
       scope: true,
@@ -29,10 +29,18 @@ angular.module( 'ngFitText', [] )
       replace: true,
       template: function( element, attrs ) {
         var tag = element[0].nodeName;
-        return "<" + tag + " data-ng-transclude data-ng-style='{fontSize:fontSize}'></" + tag + ">";
+        return "<" + tag + " data-ng-transclude data-ng-style='{lineHeight: lineHeight, fontSize:fontSize, verticalAlign: vAlign}'></" + tag + ">";
       },
       link: function( scope, element, attrs ) {
         angular.extend( config, fitTextConfig.config );
+
+        var lineHeight;
+
+        if(attrs.fittextPreserveLineHeight && $window.getComputedStyle) {
+          scope.lineHeight = $window.getComputedStyle(element[0])['line-height'];
+          scope.vAlign = $window.getComputedStyle(element[0])['vertical-align'];
+        }
+
 
         scope.compressor = attrs.fittext || 1;
         scope.minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
