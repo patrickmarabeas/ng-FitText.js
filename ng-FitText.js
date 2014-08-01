@@ -21,7 +21,7 @@ angular.module( 'ngFitText', [] )
     'max': undefined
   })
 
-  .directive( 'fittext', [ 'config', 'fitTextConfig', function( config, fitTextConfig ) {
+  .directive( 'fittext', [ 'config', 'fitTextConfig', '$timeout', function( config, fitTextConfig, $timeout ) {
     return {
       restrict: 'A',
       scope: true,
@@ -39,16 +39,26 @@ angular.module( 'ngFitText', [] )
         scope.maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
         scope.elementWidth = element[0].offsetWidth;
 
-        ( scope.resizer = function() {
+        scope.resizer = function() {
           scope.elementWidth = element[0].offsetWidth;
           scope.fontSize = Math.max(
             Math.min(
               scope.elementWidth / ( scope.compressor * 10 ),
               parseFloat( scope.maxFontSize )
-            ),
-            parseFloat( scope.minFontSize )
+          ),
+          parseFloat( scope.minFontSize )
           ) + 'px';
+        };
 
+        var tries = 0;
+        (function tryResize() {
+          tries++;
+          if (tries < 5) {
+            $timeout(function() {
+              if (element[0].offsetWidth > 0) { return scope.resizer(); }
+              tryResize();
+            }, 100);
+          }
         })();
 
         config.debounce == true
