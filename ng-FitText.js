@@ -37,10 +37,10 @@ angular.module( 'ngFitText', [] )
         scope.compressor = attrs.fittext || 1;
         scope.minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
         scope.maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
-        scope.elementWidth = element[0].offsetWidth;
+        scope.elementWidth = element.width();
 
         ( scope.resizer = function() {
-          scope.elementWidth = element[0].offsetWidth;
+          scope.elementWidth = element.width();
           scope.fontSize = Math.max(
             Math.min(
               scope.elementWidth / ( scope.compressor * 10 ),
