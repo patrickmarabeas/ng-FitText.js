@@ -7,7 +7,7 @@ gulp.task('scripts', function() {
 });
 
 gulp.task('styles', function() {
-  gulp.src('./src/styles/main.scss')
+  gulp.src('./demo/styles/main.scss')
     .on('data', function(file) {
       // https://github.com/dlmanning/gulp-sass/issues/28#issuecomment-43951089
       var path = require('path');
@@ -21,7 +21,7 @@ gulp.task('styles', function() {
 });
 
 gulp.task('watch', function() {
-  gulp.watch('./src/**/*.scss', ['styles']);
+  gulp.watch('./demo/**/*.scss', ['styles']);
 });
 
 gulp.task('default',['styles', 'scripts']);

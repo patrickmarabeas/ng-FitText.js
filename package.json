@@ -9,7 +9,7 @@
     "url": "git://github.com/patrickmarabeas/ng-FitText.js.git"
   },
   "license": "MIT",
-  "main": "src/js/ng-FitText.js",
+  "main": "src/ng-FitText.js",
   "devDependencies": {
     "gulp": "3.8.8",
     "gulp-sass": "git://github.com/dlmanning/gulp-sass.git#88a7afdc1189875d41be2d143b8fe2efd60247f5"
