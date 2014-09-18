@@ -16,9 +16,9 @@ Apply it to your text
 
     <h1 data-fittext>FitText</h1>
 
-There are also additional attributes which can be used.
+## NEW IN 2.5.0: Text now defaults to 100% width!
 
-Specifying a value for data-fittext allows you to fine tune the text size. The default is 1. Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
+Specifying a value for data-fittext allows you to fine tune the text size (like the original FitText). Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
 
     <h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
 
