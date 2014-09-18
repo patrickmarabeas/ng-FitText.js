@@ -1,4 +1,4 @@
-/* ng-FitText.js v2.5.0
+/* ng-FitText.js v3.0.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -36,23 +36,24 @@
         link: function(scope, element, attrs) {
           angular.extend(config, fitTextConfig.config);
 
-          scope.compressor = attrs.fittext || 'width100';
+          element[0].style.display = 'inline-block';
+          element[0].style.whiteSpace = 'nowrap';
+          element[0].style.lineHeight = '1';
+
+          scope.compressor = attrs.fittext || 1;
           scope.minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           scope.maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
 
-          element.children()[0].style.display = 'inline-block';
-          element.children()[0].style.lineHeight = '1';
-
           (scope.resizer = function() {
-            scope.fontSize = Math.max(
-              Math.min(
-                scope.compressor === 'width100'
-                  ? element[0].offsetWidth * (element.children()[0].offsetHeight / element.children()[0].offsetWidth)
-                  : element[0].offsetWidth / (scope.compressor * 10)
-                , parseFloat(scope.maxFontSize)
-              ),
-              parseFloat(scope.minFontSize)
-            ) + 'px';
+            $timeout( function() {
+              scope.ratio = element[0].offsetHeight / element[0].offsetWidth;
+                scope.fontSize = Math.max(
+                  Math.min(element.parent()[0].offsetWidth * scope.ratio * scope.compressor,
+                    parseFloat(scope.maxFontSize)
+                  ),
+                  parseFloat(scope.minFontSize)
+                ) + 'px';
+            },10);
           })();
 
           config.debounce == true
