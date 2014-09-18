@@ -20,6 +20,14 @@ Apply it to your text
 
 Specifying a value for `data-fittext` now allows you to fine tune the font size if you run into issues where font characters visually ooze out of their element.
 
+#### Models
+
+The FitText directive will also watch the `ng-model` placed on the element, so go nuts with dynamic content! 
+
+#### Limiting font size
+
+The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
+
 #### Debounce
 
 Because MODULARIZATION, this module doesn't come with debounce functionality included. Instead you will need to specify the functionality in the `fitTextConfigProvider`:
@@ -35,7 +43,7 @@ Because MODULARIZATION, this module doesn't come with debounce functionality inc
           var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}
         },
         
-        delay: 1000
+        delay: 1000,
       };
     }]);
     
@@ -47,6 +55,10 @@ Specifying a value for data-fittext allows you to fine tune the text size. Defau
     <h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
 
 The element needs to either be a block element or an inline-block element with a width specified (% or px).
+
+#### Limiting font size
+
+The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
 
 #### Debounce
 
