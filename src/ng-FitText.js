@@ -53,7 +53,7 @@
                   ),
                   parseFloat(scope.minFontSize)
                 ) + 'px';
-            },10);
+            },100);
           })();
 
           scope.$watch(attrs.ngModel, function() { scope.resizer() });
