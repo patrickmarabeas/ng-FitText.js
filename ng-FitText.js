@@ -42,26 +42,16 @@ angular.module( 'ngFitText', [] )
         element.children()[0].style.lineHeight = '1';
 
         ( scope.resizer = function() {
+          scope.fontSize = Math.max(
+            Math.min(
+              scope.compressor === 'width100'
+                ? element[0].offsetWidth * (element.children()[0].offsetHeight / element.children()[0].offsetWidth)
+                : element[0].offsetWidth / ( scope.compressor * 10 )
 
-          scope.fontSize = ( scope.compressor === 'width100' )
-            ? (
-              Math.max(
-                Math.min(
-                    element[0].offsetWidth * (element.children()[0].offsetHeight / element.children()[0].offsetWidth),
-                  parseFloat( scope.maxFontSize )
-                ),
-                parseFloat( scope.minFontSize )
-              ) + 'px'
-            )
-            : (
-              Math.max(
-                Math.min(
-                    element[0].offsetWidth / ( scope.compressor * 10 ),
-                  parseFloat( scope.maxFontSize )
-                ),
-                parseFloat( scope.minFontSize )
-              ) + 'px'
-            );
+              ,parseFloat( scope.maxFontSize )
+            ),
+            parseFloat( scope.minFontSize )
+          ) + 'px';
         })();
 
         config.debounce == true
