@@ -1,0 +1,20 @@
+{
+  "name": "ngFitText",
+  "version": "3.0.0",
+  "description": "An AngularJS directive for inflating web type",
+  "homepage": "https://github.com/patrickmarabeas/ng-FitText.js",
+  "bugs": "https://github.com/patrickmarabeas/ng-FitText.js/issues",
+  "repository": {
+    "type": "git",
+    "url": "git://github.com/patrickmarabeas/ng-FitText.js.git"
+  },
+  "license": "MIT",
+  "main": "src/js/ng-FitText.js",
+  "devDependencies": {
+    "gulp": "3.8.8",
+    "gulp-sass": "git://github.com/dlmanning/gulp-sass.git#88a7afdc1189875d41be2d143b8fe2efd60247f5"
+  },
+  "scripts": {
+    "postinstall": "gulp"
+  }
+}

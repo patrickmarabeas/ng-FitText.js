@@ -1,0 +1,153 @@
+$black: #1f2325;
+$blue: #0E80A0;
+
+html, body {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: #f0efee;
+  padding-top: 50px;
+
+  @media all and (max-width: 640px) {
+    padding-top: 0;
+  }
+}
+
+@font-face {
+  font-family: 'open_sansregular';
+  src: url('fonts/OpenSans-Regular-webfont.eot');
+  src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Regular-webfont.woff') format('woff'), url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'lobster';
+  src: url('fonts/Lobster_1.3-webfont.eot');
+  src: url('fonts/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Lobster_1.3-webfont.woff') format('woff'), url('fonts/Lobster_1.3-webfont.ttf') format('truetype'), url('fonts/Lobster_1.3-webfont.svg#open_sansregular') format('svg');
+  font-weight: normal;
+  font-style: normal;
+}
+
+#top {
+  width: 100%;
+  background-color: $black;
+  color: white;
+  position: fixed;
+  top: 0;
+
+  a {
+    font-family: 'open_sansregular', verdana, sans-serif;
+    line-height: 50px;
+    margin: 0 10px;
+    color: #f0efee;
+  }
+
+  @media all and (max-width: 640px) {
+    position: relative;
+  }
+}
+
+.page {
+  color: $black;
+  max-width: 960px;
+  overflow: hidden;
+  margin: 0 auto;
+  padding-bottom: 100px;
+
+  header {
+    text-align: center;
+    margin-top: 30px;
+
+    input {
+      width: 50%;
+      height: 50px;
+      font-size: 50px;
+    }
+
+    h1 {
+      margin: 0;
+
+      span {
+        display: block;
+
+        &.line0 {
+          color: $blue;
+          font-family: 'open_sansregular', verdana, sans-serif;
+          border-top: 1px solid $blue;
+          border-bottom: 1px solid $blue;
+          text-align: left;
+        }
+
+        &.line1 {
+          line-height: 0.9;
+        }
+
+        &.line2 {
+          font-family: 'lobster', verdana, sans-serif;
+          font-weight: normal;
+          margin: -.2em 0 0 0;
+          line-height: 0.9;
+        }
+      }
+
+      a.download {
+        font-family: 'open_sansregular', verdana, sans-serif;
+        background-color: $black;
+        color: #f0efee;
+        line-height: 1.7em;
+        display: block;
+        text-decoration: none;
+
+        &:hover {
+          text-decoration: underline;
+        }
+      }
+    }
+  }
+
+  h2 {
+    font-family: 'open_sansregular', verdana, sans-serif;
+    text-align: left;
+    font-size: 30px;
+    font-weight: normal;
+  }
+
+  h3 {
+    font-family: 'open_sansregular', verdana, sans-serif;
+    text-align: left;
+    font-size: 24px;
+    font-weight: normal;
+  }
+
+  .content {
+    margin-top: 20px;
+  }
+
+  p:first-child {
+    margin-top: 0;
+  }
+
+  p {
+    font-size: 16px;
+    line-height: 1.8em;
+    font-family: Helvetica, Verdana, Arial, sans-serif;
+  }
+
+  code {
+    margin-left: 20px;
+    font-size: 16px;
+
+    span {
+      margin-left: 20px;
+      margin-bottom: 10px;
+      display: block;
+
+      span {
+        margin-left: 20px;
+      }
+    }
+  }
+}

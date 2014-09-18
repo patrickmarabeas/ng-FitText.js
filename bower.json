@@ -10,8 +10,16 @@
     "typography"
   ],
   "ignore": [
-    "styles",
+    "demo",
+    "lib",
+    "node_modules",
     "test",
+    ".bowerrc",
+    "gulpfile.js",
+    "package.json",
     "index.html"
-  ]
+  ],
+  "dependencies": {
+    "angular": "1.2.24"
+  }
 }
