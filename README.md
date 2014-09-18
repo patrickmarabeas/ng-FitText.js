@@ -10,21 +10,45 @@ Grab it with Bower: `bower install ngFitText`
 
 Include it in your AngularJS application
 
-    var myApp = angular.module( 'myApp', [ 'ngFitText' ] );
+    var myApp = angular.module('myApp', ['ngFitText']);
 
 Apply it to your text
 
     <h1 data-fittext>FitText</h1>
+    
+## v3.0.0 - NEW! Text now defaults to 100% width!
 
-## NEW IN 2.5.0: Text now defaults to 100% width!
+Specifying a value for `data-fittext` now allows you to fine tune the font size if you run into issues where font characters visually ooze out of their element.
 
-Specifying a value for data-fittext allows you to fine tune the text size (like the original FitText). Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
+#### Debounce
+
+Because MODULARIZATION, this module doesn't come with debounce functionality included. Instead you will need to specify the functionality in the `fitTextConfigProvider`:
+
+    module.config(['fitTextConfigProvider', function(fitTextConfigProvider) {
+      fitTextConfigProvider.config = {
+        
+        // include a vender function like underscore or lodash
+        debounce: _.debounce,
+        
+        // specify your own function
+        debounce: function(a,b,c) {
+          var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}
+        },
+        
+        delay: 1000
+      };
+    }]);
+    
+
+## < v2.4.0
+
+Specifying a value for data-fittext allows you to fine tune the text size. Defaults to 1. Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
 
     <h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
 
 The element needs to either be a block element or an inline-block element with a width specified (% or px).
 
-### Debounce
+#### Debounce
 
 Debouce (limiting the rate at which FitText will be called on window resize) is available. You can pass initialization parameters to the ngFitText constructor to achieve this:
 
