@@ -21,7 +21,7 @@ angular.module( 'ngFitText', [] )
     'max': undefined
   })
 
-  .directive( 'fittext', [ 'config', 'fitTextConfig', function( config, fitTextConfig ) {
+  .directive( 'fittext', [ '$timeout', 'config', 'fitTextConfig', function( $timeout, config, fitTextConfig ) {
     return {
       restrict: 'A',
       scope: true,
@@ -34,21 +34,34 @@ angular.module( 'ngFitText', [] )
       link: function( scope, element, attrs ) {
         angular.extend( config, fitTextConfig.config );
 
-        scope.compressor = attrs.fittext || 1;
+        scope.compressor = attrs.fittext || 'width100';
         scope.minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
         scope.maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
-        scope.elementWidth = element[0].offsetWidth;
+
+        element.children()[0].style.display = 'inline-block';
+        element.children()[0].style.lineHeight = '1';
 
         ( scope.resizer = function() {
-          scope.elementWidth = element[0].offsetWidth;
-          scope.fontSize = Math.max(
-            Math.min(
-              scope.elementWidth / ( scope.compressor * 10 ),
-              parseFloat( scope.maxFontSize )
-            ),
-            parseFloat( scope.minFontSize )
-          ) + 'px';
 
+          scope.fontSize = ( scope.compressor === 'width100' )
+            ? (
+              Math.max(
+                Math.min(
+                    element[0].offsetWidth * (element.children()[0].offsetHeight / element.children()[0].offsetWidth),
+                  parseFloat( scope.maxFontSize )
+                ),
+                parseFloat( scope.minFontSize )
+              ) + 'px'
+            )
+            : (
+              Math.max(
+                Math.min(
+                    element[0].offsetWidth / ( scope.compressor * 10 ),
+                  parseFloat( scope.maxFontSize )
+                ),
+                parseFloat( scope.minFontSize )
+              ) + 'px'
+            );
         })();
 
         config.debounce == true
