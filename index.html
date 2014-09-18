@@ -6,7 +6,7 @@
 
   <script type="text/javascript" src="demo/js/angular.min.js"></script>
   <script type="text/javascript" src="demo/js/demo.js"></script>
-  <script type="text/javascript" src="src/js/ng-FitText.js"></script>
+  <script type="text/javascript" src="src/ng-FitText.js"></script>
 
   <link rel="stylesheet" type="text/css" href="demo/styles/main.css"/>
 
@@ -24,7 +24,7 @@
 <div class="page">
 
   <header data-ng-controller="MainController">
-    <input type="text" data-ng-model="dyn" />
+    <input type="text" data-ng-model="dyn" autofocus />
     <h1>
       <span class="line1" data-fittext data-fittext-max="310" data-ng-model="dyn">{{dyn}}</span>
       <span class="line2" data-fittext>rustled my jimmies</span>
