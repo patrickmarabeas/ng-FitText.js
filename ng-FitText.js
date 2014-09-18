@@ -58,11 +58,9 @@
 
           scope.$watch(attrs.ngModel, function() { scope.resizer() });
 
-          config.debounce == true
-            ? angular.element(window).bind('resize', _debounce( function(){ scope.$apply( scope.resizer )}, config.delay ))
-            : angular.element(window).bind('resize', function(){ scope.$apply( scope.resizer )});
-
-          function _debounce(a,b,c){var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}}
+          config.debounce
+            ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(scope.resizer)}, config.delay))
+            : angular.element(window).bind('resize', function(){ scope.$apply(scope.resizer)});
         }
       }
     }])
