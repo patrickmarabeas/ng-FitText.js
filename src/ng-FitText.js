@@ -1,4 +1,4 @@
-/* ng-FitText.js v3.0.0
+/* ng-FitText.js v3.1.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -8,7 +8,7 @@
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 18/09/2014
+ * Date: 18/10/2014
  */
 
 (function(window, document, angular, undefined) {
@@ -27,12 +27,6 @@
       return {
         restrict: 'A',
         scope: true,
-        transclude: true,
-        replace: true,
-        template: function(element, attrs) {
-          var tag = element[0].nodeName;
-          return "<" + tag + " data-ng-transclude data-ng-style='{fontSize:fontSize}'></" + tag + ">";
-        },
         link: function(scope, element, attrs) {
           angular.extend(config, fitTextConfig.config);
 
@@ -40,27 +34,28 @@
           element[0].style.whiteSpace = 'nowrap';
           element[0].style.lineHeight = '1';
 
-          scope.compressor = attrs.fittext || 1;
-          scope.minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
-          scope.maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
+          var parent = element.parent();
+          var compressor = attrs.fittext || 1;
+          var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
+          var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
 
-          (scope.resizer = function() {
+          var resizer = function() {
             $timeout( function() {
-              scope.ratio = element[0].offsetHeight / element[0].offsetWidth;
-                scope.fontSize = Math.max(
-                  Math.min(element.parent()[0].offsetWidth * scope.ratio * scope.compressor,
-                    parseFloat(scope.maxFontSize)
-                  ),
-                  parseFloat(scope.minFontSize)
-                ) + 'px';
-            },100);
-          })();
+              var ratio = element[0].offsetHeight / element[0].offsetWidth;
+              element[0].style.fontSize = Math.max(
+                Math.min(parent[0].offsetWidth * ratio * compressor,
+                  parseFloat(maxFontSize)
+                ),
+                parseFloat(minFontSize)
+              ) + 'px';
+            },50);
+          }; resizer();
 
-          scope.$watch(attrs.ngModel, function() { scope.resizer() });
+          scope.$watch(attrs.ngModel, function() { resizer() });
 
           config.debounce
-            ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(scope.resizer)}, config.delay))
-            : angular.element(window).bind('resize', function(){ scope.$apply(scope.resizer)});
+            ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))
+            : angular.element(window).bind('resize', function(){ scope.$apply(resizer)});
         }
       }
     }])
