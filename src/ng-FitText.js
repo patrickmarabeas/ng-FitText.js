@@ -1,4 +1,4 @@
-/* ng-FitText.js v3.1.0
+/* ng-FitText.js v3.2.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -8,7 +8,7 @@
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 18/10/2014
+ * Date: 30/01/2015
  */
 
 (function(window, document, angular, undefined) {
@@ -19,6 +19,7 @@
     .value( 'config', {
       'debounce': false,
       'delay': 250,
+      'loadDelay': 10,
       'min': undefined,
       'max': undefined
     })
@@ -31,25 +32,26 @@
           angular.extend(config, fitTextConfig.config);
 
           element[0].style.display = 'inline-block';
-          element[0].style.whiteSpace = 'nowrap';
           element[0].style.lineHeight = '1';
 
           var parent = element.parent();
           var compressor = attrs.fittext || 1;
+          var loadDelay = attrs.fittextLoadDelay || config.loadDelay;
           var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
 
           var resizer = function() {
-            $timeout( function() {
-              var ratio = element[0].offsetHeight / element[0].offsetWidth;
-              element[0].style.fontSize = Math.max(
-                Math.min(parent[0].offsetWidth * ratio * compressor,
-                  parseFloat(maxFontSize)
-                ),
-                parseFloat(minFontSize)
-              ) + 'px';
-            },50);
-          }; resizer();
+            element[0].style.fontSize = '10px';
+            var ratio = element[0].offsetHeight / element[0].offsetWidth;
+            element[0].style.fontSize = Math.max(
+              Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+                parseFloat(maxFontSize)
+              ),
+              parseFloat(minFontSize)
+            ) + 'px';
+          };
+
+          $timeout( function() { resizer() }, loadDelay);
 
           scope.$watch(attrs.ngModel, function() { resizer() });
 
