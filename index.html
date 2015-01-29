@@ -26,8 +26,8 @@
   <header data-ng-controller="MainController">
     <input type="text" data-ng-model="dyn" autofocus />
     <h1>
-      <span class="line1" data-fittext data-fittext-max="310" data-ng-model="dyn">{{dyn}}</span>
-      <span class="line2" data-fittext>rustled my jimmies</span>
+      <span class="line1" data-fittext data-fittext-min="100" data-fittext-max="310" data-ng-model="dyn">{{dyn}}</span>
+      <span class="line2" data-fittext data-fittext-load-delay="500">rustled my jimmies</span>
     </h1>
 
     <h2>ng-FitText.js makes font-sizes flexible. Use this directive in your fluid or responsive layout to achieve

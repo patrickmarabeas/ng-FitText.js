@@ -50,7 +50,8 @@ body {
     .page header input {
       width: 50%;
       height: 50px;
-      font-size: 50px; }
+      font-size: 50px;
+      margin-bottom: 50px; }
     .page header h1 {
       margin: 0; }
       .page header h1 span {
@@ -61,13 +62,10 @@ body {
           border-top: 1px solid #0E80A0;
           border-bottom: 1px solid #0E80A0;
           text-align: left; }
-        .page header h1 span.line1 {
-          line-height: 0.9; }
         .page header h1 span.line2 {
           font-family: 'lobster', verdana, sans-serif;
           font-weight: normal;
-          margin: -0.2em 0 0 0;
-          line-height: 0.9; }
+          margin: -0.2em 0 0 0; }
       .page header h1 a.download {
         font-family: 'open_sansregular', verdana, sans-serif;
         background-color: #1f2325;

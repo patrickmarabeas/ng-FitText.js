@@ -65,6 +65,7 @@ body {
       width: 50%;
       height: 50px;
       font-size: 50px;
+      margin-bottom: 50px;
     }
 
     h1 {
@@ -81,15 +82,10 @@ body {
           text-align: left;
         }
 
-        &.line1 {
-          line-height: 0.9;
-        }
-
         &.line2 {
           font-family: 'lobster', verdana, sans-serif;
           font-weight: normal;
           margin: -.2em 0 0 0;
-          line-height: 0.9;
         }
       }
 
