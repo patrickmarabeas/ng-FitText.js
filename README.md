@@ -28,6 +28,10 @@ The FitText directive will also watch the `ng-model` placed on the element, so g
 
 The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
 
+#### New lines
+
+To make use of new lines within a single FitText block you will need to use the `data-fittext-nl` attribute on each line wrapper. See the demo page for an example.
+
 #### Custom fonts
 
 Fonts may take time to load in. If this is the case, you can use `data-fittext-load-delay=""` to specify the millisecond delay before size is initially calculated.
