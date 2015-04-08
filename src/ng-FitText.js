@@ -44,7 +44,7 @@
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
             element[0].style.fontSize = Math.max(
-              Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+              Math.min((getWidth(parent[0])) * ratio * compressor,
                 parseFloat(maxFontSize)
               ),
               parseFloat(minFontSize)
@@ -73,4 +73,10 @@
       return this;
     });
 
+  function getWidth(element) {
+    var leftPad = parseInt(window.getComputedStyle(element).getPropertyValue("padding-left"));
+    var rightPad = parseInt(window.getComputedStyle(element).getPropertyValue("padding-left"));
+
+    return element.offsetWidth - leftPad - rightPad;
+  }
 })(window, document, angular);
