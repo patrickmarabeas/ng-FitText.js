@@ -43,6 +43,7 @@
           var resizer = function() {
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
+			ratio = (!isNaN(ratio)) ? ratio : 0;
             element[0].style.fontSize = Math.max(
               Math.min((getWidth(parent[0])) * ratio * compressor,
                 parseFloat(maxFontSize)
