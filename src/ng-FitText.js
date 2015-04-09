@@ -74,9 +74,12 @@
     });
 
   function getWidth(element) {
-    var leftPad = parseInt(window.getComputedStyle(element).getPropertyValue("padding-left"));
-    var rightPad = parseInt(window.getComputedStyle(element).getPropertyValue("padding-left"));
-
-    return element.offsetWidth - leftPad - rightPad;
+    var width = element.offsetWidth;
+    if (typeof window.getComputedStyle !== 'undefined') {
+        return width - parseInt(window.getComputedStyle(element).getPropertyValue("padding-left")) - parseInt(window.getComputedStyle(element).getPropertyValue("padding-right"));
+    }
+    else {
+        return width - parseInt(element.currentStyle["padding-left"]) - parseInt(element.currentStyle["padding-right"]);
+    }
   }
 })(window, document, angular);
