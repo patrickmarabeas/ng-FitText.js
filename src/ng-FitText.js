@@ -23,7 +23,7 @@
       'max': undefined
     })
 
-    .directive('fittext', ['$timeout', 'config', 'fitTextConfig', function($timeout, config, fitTextConfig) {
+    .directive('fittext', ['$interval', 'config', 'fitTextConfig', function($interval, config, fitTextConfig) {
       return {
         restrict: 'A',
         scope: true,
@@ -39,20 +39,26 @@
           var nl = element[0].querySelectorAll('[fittext-nl],[data-fittext-nl]').length || 1;
           var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
+          var innerhtml = "";
 
-          var resizer = function() {
-            element[0].style.fontSize = '10px';
-            var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
-			ratio = (!isNaN(ratio)) ? ratio : 0;
-            element[0].style.fontSize = Math.max(
-              Math.min((getWidth(parent[0])) * ratio * compressor,
-                parseFloat(maxFontSize)
-              ),
-              parseFloat(minFontSize)
-            ) + 'px';
+          var resizer = function () {
+              if (element[0].innerHTML != innerhtml) {
+                  innerhtml = element[0].innerHTML;
+                  element[0].style.fontSize = '10px';
+                  var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
+                  ratio = (!isNaN(ratio)) ? ratio : 0;
+                  element[0].style.fontSize = Math.max(
+                    Math.min((getWidth(parent[0])) * ratio * compressor,
+                      parseFloat(maxFontSize)
+                    ),
+                    parseFloat(minFontSize)
+                  ) + 'px';
+              }
           };
 
-          $timeout( function() { resizer() }, loadDelay);
+	  //Check periodically in case the text value has changed.
+          //Could not find an event to listen to for text update.
+          $interval( function() { resizer() }, loadDelay);
 
           scope.$watch(attrs.ngModel, function() { resizer() });
 
