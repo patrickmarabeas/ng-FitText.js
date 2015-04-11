@@ -2,7 +2,7 @@
   "name": "ngFitText",
   "version": "3.1.0",
   "main": [
-    "/src/ng-FitText.js"
+    "src/ng-FitText.js"
   ],
   "keywords": [
     "angular",
