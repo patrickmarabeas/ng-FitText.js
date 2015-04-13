@@ -23,7 +23,7 @@
       'max': undefined
     })
 
-    .directive('fittext', ['$interval', 'config', 'fitTextConfig', function($interval, config, fitTextConfig) {
+    .directive('fittext', ['$timeout', 'config', 'fitTextConfig', function($timeout, config, fitTextConfig) {
       return {
         restrict: 'A',
         scope: true,
@@ -56,9 +56,7 @@
               }
           };
 
-	  //Check periodically in case the text value has changed.
-          //Could not find an event to listen to for text update.
-          $interval( function() { resizer() }, loadDelay);
+          $timeout( function() { resizer() }, loadDelay);
 
           scope.$watch(attrs.ngModel, function() { resizer() });
 
