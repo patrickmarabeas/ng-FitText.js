@@ -84,7 +84,7 @@
         return width - parseInt(window.getComputedStyle(element).getPropertyValue("padding-left")) - parseInt(window.getComputedStyle(element).getPropertyValue("padding-right"));
     }
     else {
-        return width - parseInt(element.currentStyle["padding-left"]) - parseInt(element.currentStyle["padding-right"]);
+        return width - parseInt(element.currentStyle["paddingLeft"]) - parseInt(element.currentStyle["paddingRight"]);
     }
   }
 })(window, document, angular);
