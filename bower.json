@@ -1,6 +1,6 @@
 {
   "name": "ngFitText",
-  "version": "3.3.2",
+  "version": "3.3.3",
   "main": [
     "src/ng-FitText.js"
   ],
