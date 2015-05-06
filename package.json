@@ -1,6 +1,6 @@
 {
-  "name": "ngFitText",
-  "version": "3.3.1",
+  "name": "ng-fittext",
+  "version": "3.3.2",
   "description": "An AngularJS directive for inflating web type",
   "homepage": "https://github.com/patrickmarabeas/ng-FitText.js",
   "bugs": "https://github.com/patrickmarabeas/ng-FitText.js/issues",
