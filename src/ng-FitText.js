@@ -40,7 +40,7 @@
           var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
           var preserveLineHeight = attrs.fittextPreserveLineHeight !== undefined ? attrs.fittextPreserveLineHeight : config.preserveLineHeight;
-          var originalFontSize = window.getComputedStyle(element[0],null).getPropertyValue('font-size');
+          var originalLineHeight = window.getComputedStyle(element[0],null).getPropertyValue('line-height');
 
           var resizer = function() {
             element[0].style.lineHeight = '1';
@@ -53,7 +53,7 @@
               parseFloat(minFontSize)
             ) + 'px';
             if ( preserveLineHeight !== undefined ) {
-              element[0].style.lineHeight = originalFontSize;
+              element[0].style.lineHeight = originalLineHeight;
             }
           };
 
