@@ -108,3 +108,40 @@ body {
       display: block; }
       .page code span span {
         margin-left: 20px; }
+
+#plh-container {
+  width: 100%;
+  float: left;
+  margin-bottom: 1em;
+  padding-top: 1em;
+  padding-bottom: 1em;
+  border-top: 2px solid #999;
+  border-bottom: 2px solid #999; }
+  #plh-container h3 {
+    font-size: 50px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 10px; }
+  #plh-container p {
+    text-transform: uppercase; }
+
+#plh-left {
+  width: 44%;
+  float: left; }
+
+#plh-right {
+  margin-left: 56%;
+  width: 44%; }
+
+#plh-toggle {
+  padding: 1em; }
+
+.cf:before,
+.cf:after {
+  content: " ";
+  /* 1 */
+  display: table;
+  /* 2 */ }
+
+.cf:after {
+  clear: both; }
