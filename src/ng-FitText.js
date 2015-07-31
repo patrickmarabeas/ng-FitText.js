@@ -40,6 +40,11 @@
           var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
 
+          if(maxFontSize == 'initial' && window.getComputedStyle) {
+            element[0].style['font-size'] = "";
+            maxFontSize = window.getComputedStyle(element[0])['font-size'];
+          }
+
           var resizer = function() {
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
