@@ -33,6 +33,7 @@
           element[0].style.display = 'inline-block';
           element[0].style.lineHeight = '1';
 
+          var resizePromise;
           var parent = element.parent();
           var compressor = attrs.fittext || 1;
           var loadDelay = attrs.fittextLoadDelay || config.loadDelay;
@@ -41,19 +42,35 @@
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
 
           var resizer = function() {
-            element[0].style.fontSize = '10px';
-            var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
-            element[0].style.fontSize = Math.max(
-              Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
-                parseFloat(maxFontSize)
-              ),
-              parseFloat(minFontSize)
-            ) + 'px';
+            if(resizePromise) {
+              $timeout.cancel(resizePromise);
+            }
+
+            resizePromise = $timeout(function() {
+              resizePromise = null;
+
+              element[0].style.fontSize = '10px';
+              var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
+              element[0].style.fontSize = Math.max(
+                Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+                  parseFloat(maxFontSize)
+                ),
+                parseFloat(minFontSize)
+              ) + 'px';
+            }, 5);
           };
 
           $timeout( function() { resizer() }, loadDelay);
 
-          scope.$watch(attrs.ngModel, function() { resizer() });
+          scope.$watch(function() {
+            return [
+              scope.$eval(attrs.ngModel),
+              parent[0].offsetWidth,
+              element[0].offsetWidth
+            ].join('_');
+          }, function() { 
+            resizer();
+          });
 
           config.debounce
             ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))
