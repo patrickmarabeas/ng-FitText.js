@@ -47,22 +47,21 @@
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
 			var parentRatio = parent[0].offsetHeight / parent[0].offsetWidth
-			if (fitHeight && ratio < parentRatio) {
-				element[0].style.fontSize = Math.max(
-				  Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
-					parseFloat(maxFontSize)
-				  ),
-				  parseFloat(minFontSize)
-				) + 'px';			
-			}
-			else {
-				element[0].style.fontSize = Math.max(
-				  Math.min((parent[0].offsetHeight) * compressor,
-					parseFloat(maxFontSize)
-				  ),
-				  parseFloat(minFontSize)
-				) + 'px';
-			}
+            if (fitHeight && ratio < parentRatio) {
+                element[0].style.fontSize = Math.max(
+                  Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+                    parseFloat(maxFontSize)
+            	  ),
+                  parseFloat(minFontSize)
+                ) + 'px';
+            } else {
+                element[0].style.fontSize = Math.max(
+                  Math.min((parent[0].offsetHeight) * compressor,
+                    parseFloat(maxFontSize)
+                  ),
+                  parseFloat(minFontSize)
+                ) + 'px';
+            }
           };
 
           $timeout( function() { resizer() }, loadDelay);
