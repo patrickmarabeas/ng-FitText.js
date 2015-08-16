@@ -37,7 +37,7 @@
           var parent = element.parent();
           var compressor = attrs.fittext || 1;
           var loadDelay = attrs.fittextLoadDelay || config.loadDelay;
-		  var fitHeight = attrs.fittextFitHeight || config.fitHeight;
+          var fitHeight = attrs.fittextFitHeight || config.fitHeight;
           var nl = element[0].querySelectorAll('[fittext-nl],[data-fittext-nl]').length || 1;
           var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
