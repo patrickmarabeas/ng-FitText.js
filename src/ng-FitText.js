@@ -19,6 +19,7 @@
       'debounce': false,
       'delay': 250,
       'loadDelay': 10,
+	  'fitHeight': false,
       'min': undefined,
       'max': undefined
     })
@@ -27,7 +28,8 @@
       return {
         restrict: 'A',
         scope: true,
-        link: function(scope, element, attrs) {
+        link: function(scope, element, attrs)
+		{
           angular.extend(config, fitTextConfig.config);
 
           element[0].style.display = 'inline-block';
@@ -36,6 +38,7 @@
           var parent = element.parent();
           var compressor = attrs.fittext || 1;
           var loadDelay = attrs.fittextLoadDelay || config.loadDelay;
+		  var fitHeight = attrs.fittextFitHeight || config.fitHeight;
           var nl = element[0].querySelectorAll('[fittext-nl],[data-fittext-nl]').length || 1;
           var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
@@ -43,12 +46,23 @@
           var resizer = function() {
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
-            element[0].style.fontSize = Math.max(
-              Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
-                parseFloat(maxFontSize)
-              ),
-              parseFloat(minFontSize)
-            ) + 'px';
+			var parentRatio = parent[0].offsetHeight / parent[0].offsetWidth
+			if (fitHeight && ratio < parentRatio) {
+				element[0].style.fontSize = Math.max(
+				  Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+					parseFloat(maxFontSize)
+				  ),
+				  parseFloat(minFontSize)
+				) + 'px';			
+			}
+			else {
+				element[0].style.fontSize = Math.max(
+				  Math.min((parent[0].offsetHeight) * compressor,
+					parseFloat(maxFontSize)
+				  ),
+				  parseFloat(minFontSize)
+				) + 'px';
+			}
           };
 
           $timeout( function() { resizer() }, loadDelay);
