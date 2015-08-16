@@ -19,7 +19,7 @@
       'debounce': false,
       'delay': 250,
       'loadDelay': 10,
-	  'fitHeight': false,
+      'fitHeight': false,
       'min': undefined,
       'max': undefined
     })
@@ -28,8 +28,7 @@
       return {
         restrict: 'A',
         scope: true,
-        link: function(scope, element, attrs)
-		{
+        link: function(scope, element, attrs) {
           angular.extend(config, fitTextConfig.config);
 
           element[0].style.display = 'inline-block';
@@ -46,7 +45,7 @@
           var resizer = function() {
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
-			var parentRatio = parent[0].offsetHeight / parent[0].offsetWidth
+            var parentRatio = parent[0].offsetHeight / parent[0].offsetWidth
             if (fitHeight && ratio < parentRatio) {
                 element[0].style.fontSize = Math.max(
                   Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
