@@ -31,7 +31,6 @@
           angular.extend(config, fitTextConfig.config);
 
           element[0].style.display = 'inline-block';
-          element[0].style.lineHeight = '1';
 
           var parent = element.parent();
           var compressor = attrs.fittext || 1;
