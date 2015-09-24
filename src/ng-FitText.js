@@ -41,6 +41,12 @@
           var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
 
           var resizer = function() {
+            if ( element[0].offsetHeight * element[0].offsetWidth === 0 ) {
+              // Skip setting the font size if the element height or width
+              // have been set to 0 (or auto) for any reason.
+              return;
+            }
+
             element[0].style.fontSize = '10px';
             var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
             element[0].style.fontSize = Math.max(
