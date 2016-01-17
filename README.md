@@ -28,6 +28,8 @@ The FitText directive will also watch the `ng-model` placed on the element, so g
 
 The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
 
+You may set `data-fittext-max` to the special value `"initial"` in order to prevent the font size from increasing beyond the CSS-computed style. This requires the `font-size` property to have been either inherited, or applied via a CSS selector. It does not work for inline `font-size` set via an inline `style` attribute. It also requires support for `window.getComputedStyle()` (IE 9+).
+
 #### Preserving line height
 
 The `data-fittext-preserve-line-height` attribute gets the `line-height` set to the original `font-size` value once the resizing has happened. This can also be set globally in the `fitTextConfigProvider` via `preserveLineHeight`.

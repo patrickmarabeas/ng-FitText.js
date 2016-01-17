@@ -39,13 +39,13 @@
 
             var parent          = element.parent()
               , computed        = window.getComputedStyle(element[0], null)
-              , newlines        = element.children().length   || 1
-              , loadDelay       = attrs.fittextLoadDelay      || config.loadDelay
-              , compressor      = attrs.fittext               || config.compressor
-              , minFontSize     = attrs.fittextMin            || config.min
-              , maxFontSize     = attrs.fittextMax            || config.max
-              , lineHeight      = computed.getPropertyValue('line-height')
-              , display         = computed.getPropertyValue('display')
+              , newlines        = element.children().length || 1
+              , loadDelay       = attrs.fittextLoadDelay || config.loadDelay
+              , compressor      = attrs.fittext || config.compressor
+              , minFontSize     = attrs.fittextMin || config.min
+              , maxFontSize     = (attrs.fittextMax === 'initial' ? computed['font-size'] : attrs.fittextMax) || config.max
+              , lineHeight      = computed['line-height']
+              , display         = computed['display']
               ;
 
             function calculate() {
