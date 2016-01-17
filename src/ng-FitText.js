@@ -15,7 +15,7 @@
   'use strict';
 
   angular.module('ngFitText', [])
-    .value('config', {
+    .value('fitTextDefaultConfig', {
       'debounce'    : false,
       'delay'       : 250,
       'loadDelay'   : 10,
@@ -26,7 +26,7 @@
 
     .directive('fittext', [
       '$timeout',
-      'config',
+      'fitTextDefaultConfig',
       'fitTextConfig',
 
       function($timeout, config, fitTextConfig) {
