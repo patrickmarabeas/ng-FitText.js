@@ -23,7 +23,7 @@
 
 <div class="page">
 
-  <header data-ng-controller="MainController">
+  <header data-ng-controller="MainController" class="cf">
     <input type="text" data-ng-model="dyn" autofocus />
     <h1>
       <span class="line1" data-fittext data-fittext-min="100" data-fittext-max="310" data-ng-model="dyn">{{dyn}}</span>
@@ -36,6 +36,20 @@
 
     <h2>ng-FitText.js makes font-sizes flexible. Use this directive in your fluid or responsive layout to achieve
       scalable headlines that fill the width of a parent element.</h2>
+
+    <div id="plh-container">
+      <div id="plh-left">
+        <h3 ng-if="isActivePreserveLineHeight" data-fittext data-fittext-preserve-line-height>And if you just happen</h3>
+        <h3 ng-if="!isActivePreserveLineHeight" data-fittext>And if you just happen</h3>
+        <p>to need the line-height preserved</p>
+      </div>
+      <div id="plh-right">
+        <h3 ng-if="isActivePreserveLineHeight" data-fittext data-fittext-preserve-line-height>ng-FitText.js can do that too, at the same price</h3>
+        <h3 ng-if="!isActivePreserveLineHeight" data-fittext>ng-FitText.js can do that too, at the same price</h3>
+        <p>spoiler: it's free</p>
+      </div>
+    </div>
+    <p><button id="plh-toggle" ng-click="togglePreserveLineHeight()">Toggle line-height preservation</button></p>
 
   </header>
 

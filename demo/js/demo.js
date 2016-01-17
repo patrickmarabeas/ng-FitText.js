@@ -13,6 +13,14 @@
     }])
     .controller('MainController', ['$scope', function($scope) {
       $scope.dyn = 'FitText';
+      $scope.isActivePreserveLineHeight = true;
+
+      $scope.togglePreserveLineHeight = function () {
+        if ( $scope.isActivePreserveLineHeight === true )
+          $scope.isActivePreserveLineHeight = false;
+        else
+          $scope.isActivePreserveLineHeight = true;
+      };
     }]);
 
 })(window, document, angular);

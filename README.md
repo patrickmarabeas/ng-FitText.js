@@ -28,6 +28,10 @@ The FitText directive will also watch the `ng-model` placed on the element, so g
 
 The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
 
+#### Preserving line height
+
+The `data-fittext-preserve-line-height` attribute gets the `line-height` set to the original `font-size` value once the resizing has happened. This can also be set globally in the `fitTextConfigProvider` via `preserveLineHeight`.
+
 #### New lines
 
 To make use of new lines within a single FitText block you will need to use the `data-fittext-nl` attribute on each line wrapper. See the demo page for an example.
