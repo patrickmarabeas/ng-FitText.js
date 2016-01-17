@@ -76,7 +76,7 @@
 
             $timeout( function() { resizer() }, loadDelay);
 
-            scope.$watch(attrs.ngModel, function() { resizer() });
+            scope.$watch(attrs.ngBind, function() { resizer() });
 
             config.debounce
               ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))
