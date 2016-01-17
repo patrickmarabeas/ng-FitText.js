@@ -23,10 +23,10 @@
 
 <div class="page">
 
-  <header data-ng-controller="MainController" class="cf">
-    <input type="text" data-ng-model="dyn" autofocus />
+  <header data-ng-controller="MainController as mainCtrl" class="cf">
+    <input type="text" data-ng-model="mainCtrl.data.dyn" autofocus />
     <h1>
-      <span class="line1" data-fittext data-fittext-min="100" data-fittext-max="310" data-ng-model="dyn">{{dyn}}</span>
+      <span class="line1" data-fittext data-fittext-min="100" data-fittext-max="310" data-ng-bind="mainCtrl.data.dyn"></span>
       <span class="line2" data-fittext data-fittext-load-delay="500">
         <span>rustled my jimmies</span>
         <span class="right red">jimmies</span>
