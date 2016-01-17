@@ -71,6 +71,10 @@ body {
     h1 {
       margin: 0;
 
+      &.setInitial {
+        font-size: 60px;
+      }
+
       span {
         display: block;
 

@@ -11,15 +11,15 @@ body {
 
 @font-face {
   font-family: 'open_sansregular';
-  src: url('fonts/OpenSans-Regular-webfont.eot');
-  src: url('fonts/OpenSans-Regular-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/OpenSans-Regular-webfont.woff') format('woff'), url('fonts/OpenSans-Regular-webfont.ttf') format('truetype'), url('fonts/OpenSans-Regular-webfont.svg#open_sansregular') format('svg');
+  src: url("fonts/OpenSans-Regular-webfont.eot");
+  src: url("fonts/OpenSans-Regular-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/OpenSans-Regular-webfont.woff") format("woff"), url("fonts/OpenSans-Regular-webfont.ttf") format("truetype"), url("fonts/OpenSans-Regular-webfont.svg#open_sansregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
 @font-face {
   font-family: 'lobster';
-  src: url('fonts/Lobster_1.3-webfont.eot');
-  src: url('fonts/Lobster_1.3-webfont.eot?#iefix') format('embedded-opentype'), url('fonts/Lobster_1.3-webfont.woff') format('woff'), url('fonts/Lobster_1.3-webfont.ttf') format('truetype'), url('fonts/Lobster_1.3-webfont.svg#open_sansregular') format('svg');
+  src: url("fonts/Lobster_1.3-webfont.eot");
+  src: url("fonts/Lobster_1.3-webfont.eot?#iefix") format("embedded-opentype"), url("fonts/Lobster_1.3-webfont.woff") format("woff"), url("fonts/Lobster_1.3-webfont.ttf") format("truetype"), url("fonts/Lobster_1.3-webfont.svg#open_sansregular") format("svg");
   font-weight: normal;
   font-style: normal; }
 
@@ -54,6 +54,8 @@ body {
       margin-bottom: 50px; }
     .page header h1 {
       margin: 0; }
+      .page header h1.setInitial {
+        font-size: 60px; }
       .page header h1 span {
         display: block; }
         .page header h1 span.line0 {
@@ -65,7 +67,7 @@ body {
         .page header h1 span.line2 {
           font-family: 'lobster', verdana, sans-serif;
           font-weight: normal;
-          margin: -0.2em 0 0 0; }
+          margin: -.2em 0 0 0; }
           .page header h1 span.line2 .right {
             text-align: right; }
             .page header h1 span.line2 .right.red {
