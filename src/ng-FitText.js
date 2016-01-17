@@ -20,7 +20,7 @@
       'delay'       : 250,
       'loadDelay'   : 10,
       'compressor'  : 1,
-      'min'         : Number.NEGATIVE_INFINITY,
+      'min'         : 0,
       'max'         : Number.POSITIVE_INFINITY
     })
 
@@ -50,13 +50,11 @@
 
             function calculate() {
               var ratio = element[0].offsetHeight / element[0].offsetWidth / newlines;
-              return Math.floor(
-                Math.max(
-                  Math.min(parent[0].offsetWidth * ratio * compressor,
-                    parseFloat(maxFontSize)
-                  ),
-                  parseFloat(minFontSize)
-                )
+              return Math.max(
+                Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+                  parseFloat(maxFontSize)
+                ),
+                parseFloat(minFontSize)
               )
             }
 
@@ -66,7 +64,7 @@
                 return;
 
               // Set standard values for calculation
-              element[0].style.fontSize       = '12px'; // TODO: I feel like this should be 1em
+              element[0].style.fontSize       = '10px';
               element[0].style.lineHeight     = '1';
               element[0].style.display        = 'inline-block';
 
