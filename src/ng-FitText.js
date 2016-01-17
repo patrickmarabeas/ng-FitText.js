@@ -46,10 +46,11 @@
               , maxFontSize     = (attrs.fittextMax === 'initial' ? computed['font-size'] : attrs.fittextMax) || config.max
               , lineHeight      = computed['line-height']
               , display         = computed['display']
+              , calcSize        = 10
               ;
 
             function calculate() {
-              var ratio = element[0].offsetHeight / element[0].offsetWidth / newlines;
+              var ratio = (calcSize * newlines) / element[0].offsetWidth / newlines;
               return Math.max(
                 Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
                   parseFloat(maxFontSize)
@@ -64,7 +65,7 @@
                 return;
 
               // Set standard values for calculation
-              element[0].style.fontSize       = '10px';
+              element[0].style.fontSize       = calcSize + 'px';
               element[0].style.lineHeight     = '1';
               element[0].style.display        = 'inline-block';
 
