@@ -15,65 +15,76 @@
   'use strict';
 
   angular.module('ngFitText', [])
-    .value( 'config', {
-      'debounce': false,
-      'delay': 250,
-      'loadDelay': 10,
-      'min': undefined,
-      'max': undefined,
-      'preserveLineHeight': undefined
+    .value('config', {
+      'debounce'    : false,
+      'delay'       : 250,
+      'loadDelay'   : 10,
+      'compressor'  : 1,
+      'min'         : Number.NEGATIVE_INFINITY,
+      'max'         : Number.POSITIVE_INFINITY
     })
 
-    .directive('fittext', ['$timeout', 'config', 'fitTextConfig', function($timeout, config, fitTextConfig) {
-      return {
-        restrict: 'A',
-        scope: true,
-        link: function(scope, element, attrs) {
-          angular.extend(config, fitTextConfig.config);
+    .directive('fittext', [
+      '$timeout',
+      'config',
+      'fitTextConfig',
 
-          element[0].style.display = 'inline-block';
+      function($timeout, config, fitTextConfig) {
+        return {
+          restrict: 'A',
+          scope: true,
+          link: function(scope, element, attrs) {
 
-          var parent = element.parent();
-          var compressor = attrs.fittext || 1;
-          var loadDelay = attrs.fittextLoadDelay || config.loadDelay;
-          var nl = element[0].querySelectorAll('[fittext-nl],[data-fittext-nl]').length || 1;
-          var minFontSize = attrs.fittextMin || config.min || Number.NEGATIVE_INFINITY;
-          var maxFontSize = attrs.fittextMax || config.max || Number.POSITIVE_INFINITY;
-          var preserveLineHeight = attrs.fittextPreserveLineHeight !== undefined ? attrs.fittextPreserveLineHeight : config.preserveLineHeight;
-          var originalLineHeight = window.getComputedStyle(element[0],null).getPropertyValue('line-height');
+            angular.extend(config, fitTextConfig.config);
 
-          var resizer = function() {
+            var parent          = element.parent()
+              , computed        = window.getComputedStyle(element[0], null)
+              , newlines        = element.children().length   || 1
+              , loadDelay       = attrs.fittextLoadDelay      || config.loadDelay
+              , compressor      = attrs.fittext               || config.compressor
+              , minFontSize     = attrs.fittextMin            || config.min
+              , maxFontSize     = attrs.fittextMax            || config.max
+              , lineHeight      = computed.getPropertyValue('line-height')
+              , display         = computed.getPropertyValue('display')
+              ;
 
-            if ( element[0].offsetHeight * element[0].offsetWidth === 0 ) {
-              // Skip setting the font size if the element height or width
-              // have been set to 0 (or auto) for any reason.
-              return;
+            function calculate() {
+              var ratio = element[0].offsetHeight / element[0].offsetWidth / newlines;
+              return Math.max(
+                Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+                  parseFloat(maxFontSize)
+                ),
+                parseFloat(minFontSize)
+              )
             }
 
-            element[0].style.lineHeight = '1';
-            element[0].style.fontSize = '10px';
-            var ratio = element[0].offsetHeight / element[0].offsetWidth / nl;
-            element[0].style.fontSize = Math.max(
-              Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
-                parseFloat(maxFontSize)
-              ),
-              parseFloat(minFontSize)
-            ) + 'px';
-            if ( preserveLineHeight !== undefined ) {
-              element[0].style.lineHeight = originalLineHeight;
+            function resizer() {
+              // Don't calculate for elements with no width or height
+              if (element[0].offsetHeight * element[0].offsetWidth === 0)
+                return;
+
+              // Set standard values for calculation
+              element[0].style.fontSize       = '12px'; // TODO: I feel like this should be 1em
+              element[0].style.lineHeight     = '1';
+              element[0].style.display        = 'inline-block';
+
+              // Set usage values
+              element[0].style.fontSize       = calculate() + 'px';
+              element[0].style.lineHeight     = lineHeight;
+              element[0].style.display        = display;
             }
-          };
 
-          $timeout( function() { resizer() }, loadDelay);
+            $timeout( function() { resizer() }, loadDelay);
 
-          scope.$watch(attrs.ngModel, function() { resizer() });
+            scope.$watch(attrs.ngModel, function() { resizer() });
 
-          config.debounce
-            ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))
-            : angular.element(window).bind('resize', function(){ scope.$apply(resizer)});
+            config.debounce
+              ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))
+              : angular.element(window).bind('resize', function(){ scope.$apply(resizer)});
+          }
         }
       }
-    }])
+    ])
 
     .provider('fitTextConfig', function() {
       var self = this;
