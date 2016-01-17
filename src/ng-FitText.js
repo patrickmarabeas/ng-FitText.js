@@ -50,12 +50,12 @@
 
             function calculate() {
               var ratio = element[0].offsetHeight / element[0].offsetWidth / newlines;
-              return Math.max(
+              return Math.floor(Math.max(
                 Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
                   parseFloat(maxFontSize)
                 ),
                 parseFloat(minFontSize)
-              )
+              ))
             }
 
             function resizer() {
