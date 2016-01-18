@@ -50,6 +50,19 @@
 
     <h1 class="setInitial" data-fittext data-fittext-max="initial">Max font size is CSS font-size</h1>
 
+    <p>Child block elements will use font size of longest element</p>
+    <h1 data-fittext>
+      <span style="line-height: 0.5em">some </span>
+      <span style="line-height: 0.5em">text </span>
+      <span style="line-height: 0.5em">here lolol</span>
+    </h1>
+    <p>Child inline elements can also be used as expected</p>
+    <span data-fittext>
+      <span style="color: red;">some </span>
+      <span>text </span>
+      <span style="color: blue;">here lolol</span>
+    </span>
+
     <hr/>
 
   </header>
