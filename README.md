@@ -15,6 +15,10 @@ Include it in your AngularJS application
 Apply it to your text
 
     <h1 data-fittext>FitText</h1>
+
+## v4.0.0
+
+Details coming. See demo page for examples.
     
 ## v3.0.0 - NEW! Text now defaults to 100% width!
 
