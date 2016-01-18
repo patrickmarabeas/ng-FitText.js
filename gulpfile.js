@@ -1,5 +1,8 @@
 var gulp          = require('gulp')
-  , sass          = require('gulp-sass');
+  , rename        = require('gulp-rename')
+  , uglify        = require('gulp-uglify')
+  , sass          = require('gulp-sass')
+  ;
 
 gulp.task('scripts', function() {
   gulp.src('./lib/angular/angular.min.js')
@@ -18,6 +21,13 @@ gulp.task('styles', function() {
     })
     .pipe(sass({ errLogToConsole: true })) // error handling still breaks in conjunction with sourcemaps
     .pipe(gulp.dest('./demo/styles'));
+});
+
+gulp.task('compress', function() {
+  gulp.src('src/*.js')
+    .pipe(uglify())
+    .pipe(rename("ng-FitText.min.js"))
+    .pipe(gulp.dest('dist'))
 });
 
 gulp.task('watch', function() {
