@@ -10,86 +10,71 @@ Grab it with Bower: `bower install ngFitText`
 
 Include it in your AngularJS application
 
-    var myApp = angular.module('myApp', ['ngFitText']);
+```javascript
+var myApp = angular.module('myApp', ['ngFitText']);
+```
 
 Apply it to your text
 
-    <h1 data-fittext>FitText</h1>
+```html
+<!-- basic implementation -->
+<h1 data-fittext>FitText</h1>
 
-## v4.0.0
+<!-- setting a minimum font size -->
+<h1 data-fittext data-fittext-min="10">FitText</h1>
 
-Details coming. See demo page for examples.
-    
-## v3.0.0 - NEW! Text now defaults to 100% width!
+<!-- minimum font size inherited from CSS -->
+<h1 data-fittext data-fittext-min="inherit">FitText</h1>
 
-Specifying a value for `data-fittext` now allows you to fine tune the font size if you run into issues where font characters visually ooze out of their element.
+<!-- setting a maximum font size -->
+<h1 data-fittext data-fittext-max="10">FitText</h1>
 
-#### Models
+<!-- maximum font size inherited from CSS -->
+<h1 data-fittext data-fittext-max="inherit">FitText</h1>
 
-The FitText directive will also watch the `ng-model` placed on the element, so go nuts with dynamic content! 
+<!-- combination of restrictions -->
+<h1 data-fittext data-fittext-min="10" data-fittext-max="inherit">FitText</h1>
+<h1 data-fittext data-fittext-min="inherit" data-fittext-max="100">FitText</h1>
+<h1 data-fittext data-fittext-min="10" data-fittext-max="100">FitText</h1>
 
-#### Limiting font size
+<!-- block child elements will share smallest font size -->
+<div data-fittext>
+  <div>Short line</div>
+  <div>Font size of this element will be used</div>
+  <div>Short</div>
+</div>
 
-The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
+<!-- inline child elements will behave as a single line of text -->
+<span data-fittext>
+  <span>Single</span>
+  <span> line of text</span>
+  <span> spans 100% width</span>
+</span>
 
-You may set `data-fittext-max` to the special value `"initial"` in order to prevent the font size from increasing beyond the CSS-computed style. This requires the `font-size` property to have been either inherited, or applied via a CSS selector. It does not work for inline `font-size` set via an inline `style` attribute. It also requires support for `window.getComputedStyle()` (IE 9+).
+```
 
-#### Preserving line height
+### Changes:
 
-The `data-fittext-preserve-line-height` attribute gets the `line-height` set to the original `font-size` value once the resizing has happened. This can also be set globally in the `fitTextConfigProvider` via `preserveLineHeight`.
+#### [v4.1.0](https://github.com/patrickmarabeas/ng-FitText.js/releases/tag/v4.1.0)
++ Replace `'initial'` value with more semantic `'inherit'`
++ Both `data-fittext-min` and `data-fittext-max` can use the inherited CSS value by using `'inherit'`
 
-#### New lines
+#### [v4.0.0](https://github.com/patrickmarabeas/ng-FitText.js/releases/tag/v4.0.0)
++ `data-fittext-max` can now take `'initial'` as a value to use inherited CSS value. This allows for PX, EM or REM to be used.
++ Line heights are preserved
++ Display property is now preserved
++ New lines no longer need to be specified with an attribute
++ `ng-model` was mistakenly used for `ng-bind` - No longer need to use both `ng-model` and `{{}}` for dynamic values
++ Minified version now delivered via Bower
++ Config provider namespaced to avoid conflicts
 
-To make use of new lines within a single FitText block you will need to use the `data-fittext-nl` attribute on each line wrapper. See the demo page for an example.
+#### [v3.0.0](https://github.com/patrickmarabeas/ng-FitText.js/releases/tag/v3.0.0)
++ Element now defaults to 100% width
++ Compressor now fine tunes from this point
++ Debounce functionality now needs to be passed in via fitTextConfigProvider
 
-#### Custom fonts
-
-Fonts may take time to load in. If this is the case, you can use `data-fittext-load-delay=""` to specify the millisecond delay before size is initially calculated.
-
-#### Debounce
-
-Because MODULARIZATION, this module doesn't come with debounce functionality included. Instead you will need to specify the functionality in the `fitTextConfigProvider`:
-
-    module.config(['fitTextConfigProvider', function(fitTextConfigProvider) {
-      fitTextConfigProvider.config = {
-        
-        // include a vender function like underscore or lodash
-        debounce: _.debounce,
-        
-        // specify your own function
-        debounce: function(a,b,c) {
-          var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}
-        },
-        
-        delay: 1000,
-      };
-    }]);
-    
-
-## < v2.4.0
-
-Specifying a value for data-fittext allows you to fine tune the text size. Defaults to 1. Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
-
-    <h1 data-fittext=".315" data-fittext-min="12" data-fittext-max="50">ng-FitText</h1>
-
-The element needs to either be a block element or an inline-block element with a width specified (% or px).
-
-#### Limiting font size
-
-The `data-fittext-max=""` and `data-fittext-min=""` attributes respectfully limit the font size. This can also be set globally in the `fitTextConfigProvider` via `min` and `max`.
-
-#### Debounce
-
-Debouce (limiting the rate at which FitText will be called on window resize) is available. You can pass initialization parameters to the ngFitText constructor to achieve this:
-
-    myApp.config( function( fitTextConfigProvider ) {
-        fitTextConfigProvider.config = {
-            debounce: true, //default is false
-            delay: 1000 //default is 250
-        };
-
-        // OR
-
-        fitTextConfigProvider.config.debounce = true;
-        fitTextConfigProvider.config.delay = 1000;
-    });
+#### < v2.4.0
++ Specifying a value for data-fittext allows you to fine tune the text size. Defaults to 1. Increasing this number (ie 1.5) will resize the text more aggressively. Decreasing this number (ie 0.5) will reduce the aggressiveness of resize. data-fittext-min and data-fittext-max allow you to set upper and lower limits.
++ The element needs to either be a block element or an inline-block element with a width specified (% or px).
++ Font sizes can be limited with `data-fittext-max` and `data-fittext-max`
++ Debouncing addded
