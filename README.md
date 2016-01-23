@@ -20,6 +20,9 @@ Apply it to your text
 <!-- basic implementation -->
 <h1 data-fittext>FitText</h1>
 
+<!-- dynamic content -->
+<h1 data-fittext ></h1>
+
 <!-- setting a minimum font size -->
 <h1 data-fittext data-fittext-min="10">FitText</h1>
 
@@ -51,6 +54,31 @@ Apply it to your text
   <span> spans 100% width</span>
 </span>
 
+<!-- Custom fonts may take to load in. A delay can be specified before size is initially calculated -->
+<h1 data-fittext data-fittext-load-delay="500">Custom font</h1>
+
+<!-- Custom fonts may ooze out of element; this is the same as the original compressor attr -->
+<h1 data-fittext=".9">Custom font</h1>
+```
+
+### FitText Config Provider
+
+Because MODULARIZATION, this module doesn't come with debounce functionality included. Instead you will need to specify the functionality in the `fitTextConfigProvider`:
+
+```javascript
+module.config(['fitTextConfigProvider', function(fitTextConfigProvider) {
+  fitTextConfigProvider.config = {
+    debounce: _.debounce,               // include a vender function like underscore or lodash
+    debounce: function(a,b,c) {         // specify your own function
+      var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}
+    },
+    delay: 1000,                        // debounce delay
+    loadDelay: 10,                      // global default delay before initial calculation
+    compressor: 1,                      // global default calculation multiplier
+    min: 0,                             // global default min
+    max: Number.POSITIVE_INFINITY       // global default max
+  };
+}]);
 ```
 
 ### Changes:
