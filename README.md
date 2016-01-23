@@ -14,7 +14,7 @@ Include it in your AngularJS application
 var myApp = angular.module('myApp', ['ngFitText']);
 ```
 
-### Application
+### Implementation
 
 ```html
 <!-- basic implementation -->
@@ -81,7 +81,7 @@ module.config(['fitTextConfigProvider', function(fitTextConfigProvider) {
 }]);
 ```
 
-### Changes:
+### Changelog
 
 #### [v4.1.0](https://github.com/patrickmarabeas/ng-FitText.js/releases/tag/v4.1.0)
 + Replace `'initial'` value with more semantic `'inherit'`
