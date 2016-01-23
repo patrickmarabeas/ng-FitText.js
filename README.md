@@ -14,7 +14,7 @@ Include it in your AngularJS application
 var myApp = angular.module('myApp', ['ngFitText']);
 ```
 
-Apply it to your text
+### Application
 
 ```html
 <!-- basic implementation -->
