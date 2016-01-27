@@ -1,5 +1,5 @@
 /**
- * ng-FitText.js v4.1.0
+ * ng-FitText.js v4.1.1
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -39,6 +39,8 @@
             angular.extend(config, fitTextConfig.config);
 
             var parent          = element.parent()
+              , domElem         = element[0]
+              , domElemStyle    = domElem.style
               , computed        = window.getComputedStyle(element[0], null)
               , newlines        = element.children().length || 1
               , loadDelay       = attrs.fittextLoadDelay || config.loadDelay
@@ -51,7 +53,7 @@
               ;
 
             function calculate() {
-              var ratio = (calcSize * newlines) / element[0].offsetWidth / newlines;
+              var ratio = (calcSize * newlines) / domElem.offsetWidth / newlines;
               return Math.max(
                 Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
                   parseFloat(maxFontSize)
@@ -62,18 +64,18 @@
 
             function resizer() {
               // Don't calculate for elements with no width or height
-              if (element[0].offsetHeight * element[0].offsetWidth === 0)
+              if (domElem.offsetHeight * domElem.offsetWidth === 0)
                 return;
 
               // Set standard values for calculation
-              element[0].style.fontSize       = calcSize + 'px';
-              element[0].style.lineHeight     = '1';
-              element[0].style.display        = 'inline-block';
+              domElemStyle.fontSize       = calcSize + 'px';
+              domElemStyle.lineHeight     = '1';
+              domElemStyle.display        = 'inline-block';
 
               // Set usage values
-              element[0].style.fontSize       = calculate() + 'px';
-              element[0].style.lineHeight     = lineHeight;
-              element[0].style.display        = display;
+              domElemStyle.fontSize       = calculate() + 'px';
+              domElemStyle.lineHeight     = lineHeight;
+              domElemStyle.display        = display;
             }
 
             $timeout( function() { resizer() }, loadDelay);
