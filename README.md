@@ -76,7 +76,9 @@ module.config(['fitTextConfigProvider', function(fitTextConfigProvider) {
     loadDelay: 10,                      // global default delay before initial calculation
     compressor: 1,                      // global default calculation multiplier
     min: 0,                             // global default min
-    max: Number.POSITIVE_INFINITY       // global default max
+    max: Number.POSITIVE_INFINITY,      // global default max
+    inheritMin: false,                  // global fittext-min inherit
+    inheritMax: true                    // global fittext-max inherit
   };
 }]);
 ```
