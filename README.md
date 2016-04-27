@@ -69,19 +69,25 @@ Because MODULARIZATION, this module doesn't come with debounce functionality inc
 module.config(['fitTextConfigProvider', function(fitTextConfigProvider) {
   fitTextConfigProvider.config = {
     debounce: _.debounce,               // include a vender function like underscore or lodash
-    debounce: function(a,b,c) {         // specify your own function
+    debounce: function(a,b,c) {         // OR specify your own function
       var d;return function(){var e=this,f=arguments;clearTimeout(d),d=setTimeout(function(){d=null,c||a.apply(e,f)},b),c&&!d&&a.apply(e,f)}
     },
     delay: 1000,                        // debounce delay
     loadDelay: 10,                      // global default delay before initial calculation
     compressor: 1,                      // global default calculation multiplier
     min: 0,                             // global default min
+    min: 'inherit',                     // OR inherit CSS values globally
     max: Number.POSITIVE_INFINITY       // global default max
+    max: 'inherit'                      // OR inherit CSS values globally
   };
 }]);
 ```
 
 ### Changelog
+
+#### [v4.2.0](https://github.com/patrickmarabeas/ng-FitText.js/releases/tag/v4.2.0)
++ Globally `inherit` CSS values with `min` and `max` parameters in `fitTextConfigProvider`
+
 
 #### [v4.1.0](https://github.com/patrickmarabeas/ng-FitText.js/releases/tag/v4.1.0)
 + Replace `'initial'` value with more semantic `'inherit'`

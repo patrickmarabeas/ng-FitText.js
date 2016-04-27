@@ -1,5 +1,5 @@
 /**
- * ng-FitText.js v4.1.1
+ * ng-FitText.js v4.2.0
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -8,7 +8,7 @@
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 23/01/2016
+ * Date: 27/04/2016
  */
 
 (function(window, document, angular, undefined) {
@@ -45,8 +45,10 @@
               , newlines        = element.children().length || 1
               , loadDelay       = attrs.fittextLoadDelay || config.loadDelay
               , compressor      = attrs.fittext || config.compressor
-              , minFontSize     = (attrs.fittextMin ==='inherit' ? computed['font-size'] : attrs.fittextMin) || config.min
-              , maxFontSize     = (attrs.fittextMax === 'inherit' ? computed['font-size'] : attrs.fittextMax) || config.max
+              , min             = attrs.fittextMin || config.min
+              , max             = attrs.fittextMax || config.max
+              , minFontSize     = min ==='inherit'? computed['font-size'] : min
+              , maxFontSize     = max ==='inherit'? computed['font-size'] : max
               , lineHeight      = computed['line-height']
               , display         = computed['display']
               , calcSize        = 10
