@@ -1,5 +1,5 @@
 /**
- * ng-FitText.js v4.2.1
+ * ng-FitText.js v4.2.2
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -8,7 +8,7 @@
  * Released under the MIT license
  * http://opensource.org/licenses/mit-license.php
  *
- * Date: 12/06/2016
+ * Date: 03/03/2017
  */
 
 (function(window, document, angular, undefined) {
@@ -44,7 +44,7 @@
               , computed        = window.getComputedStyle(element[0], null)
               , newlines        = element.children().length || 1
               , loadDelay       = attrs.fittextLoadDelay || config.loadDelay
-              , compressor      = isNaN(attrs.fittext) ? config.compressor : attrs.fittext
+              , compressor      = isNaN(parseInt(attrs.fittext)) ? config.compressor : attrs.fittext
               , min             = attrs.fittextMin || config.min
               , max             = attrs.fittextMax || config.max
               , minFontSize     = min ==='inherit'? computed['font-size'] : min
@@ -52,6 +52,7 @@
               , lineHeight      = computed['line-height']
               , display         = computed['display']
               , calcSize        = 10
+              , resizePromise
               ;
 
             function calculate() {
@@ -64,7 +65,7 @@
               )
             }
 
-            function resizer() {
+            function resize() {
               // Don't calculate for elements with no width or height
               if (domElem.offsetHeight * domElem.offsetWidth === 0)
                 return;
@@ -80,9 +81,27 @@
               domElemStyle.display        = display;
             }
 
+            function resizer() {
+              if(resizePromise)
+                $timeout.cancel(resizePromise);
+
+              resizePromise = $timeout(function() {
+                resizePromise = null;
+                resize();
+              }, 5);
+            }
+
             $timeout( function() { resizer() }, loadDelay);
 
-            scope.$watch(attrs.ngBind, function() { resizer() });
+            scope.$watch(function() {
+              return [
+                scope.$eval(attrs.ngBind),
+                parent[0].offsetWidth,
+                element[0].offsetWidth
+              ].join('_');
+            }, function() {
+              resizer();
+            });
 
             config.debounce
               ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))

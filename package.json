@@ -1,6 +1,6 @@
 {
   "name": "ng-fittext",
-  "version": "4.2.1",
+  "version": "4.2.2",
   "description": "An AngularJS directive for inflating web type",
   "homepage": "https://github.com/patrickmarabeas/ng-FitText.js",
   "bugs": "https://github.com/patrickmarabeas/ng-FitText.js/issues",
@@ -10,6 +10,9 @@
   },
   "license": "MIT",
   "main": "dist/ng-FitText.min.js",
+  "scripts": {
+    "gulp": "gulp"
+  },
   "devDependencies": {
     "gulp": "3.8.8",
     "gulp-rename": "^1.2.2",
