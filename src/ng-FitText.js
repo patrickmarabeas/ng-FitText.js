@@ -1,5 +1,5 @@
 /**
- * ng-FitText.js v4.2.2
+ * ng-FitText.js v4.2.3
  * https://github.com/patrickmarabeas/ng-FitText.js
  *
  * Original jQuery project: https://github.com/davatron5000/FitText.js
@@ -58,7 +58,7 @@
             function calculate() {
               var ratio = (calcSize * newlines) / domElem.offsetWidth / newlines;
               return Math.max(
-                Math.min((parent[0].offsetWidth - 6) * ratio * compressor,
+                Math.min(((parent[0].offsetWidth - (parseFloat(getComputedStyle(parent[0]).paddingLeft) + parseFloat(getComputedStyle(parent[0]).paddingRight))) - 6) * ratio * compressor,
                   parseFloat(maxFontSize)
                 ),
                 parseFloat(minFontSize)
