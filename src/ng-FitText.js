@@ -104,8 +104,8 @@
             });
 
             config.debounce
-              ? angular.element(window).bind('resize', config.debounce(function(){ scope.$apply(resizer)}, config.delay))
-              : angular.element(window).bind('resize', function(){ scope.$apply(resizer)});
+              ? angular.element(window).bind('resize', config.debounce(function(){ scope.$applyAsync(resizer) }, config.delay))
+              : angular.element(window).bind('resize', function(){ scope.$applyAsync(resizer) });
           }
         }
       }
